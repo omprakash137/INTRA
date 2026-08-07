@@ -4452,3 +4452,34 @@ RESPONSIVE
     color: #FFF;
     border-color: var(--gold);
 }
+
+/*================================
+//responsive
+/================================*/
+
+@media (max-width:768px) {
+
+    .card-one {
+        left: 12px;
+        top: 20px;
+    }
+
+    .card-two {
+        right: 12px;
+        bottom: 20px;
+    }
+
+    .floating-card {
+        padding: 16px 20px;
+        border-radius: 16px;
+    }
+
+    .floating-card h2 {
+        font-size: 28px;
+    }
+
+    .floating-card span {
+        font-size: 14px;
+    }
+
+}
