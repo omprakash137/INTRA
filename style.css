@@ -2356,11 +2356,15 @@ footer hr {
 
 @media (max-width:768px) {
 
+
+
     nav {
 
-        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
 
-        gap: 20px;
 
         padding: 20px;
 
@@ -2440,11 +2444,7 @@ footer hr {
 
     }
 
-    .logo {
 
-        justify-content: center;
-
-    }
 
 }
 
@@ -3440,11 +3440,8 @@ RESPONSIVE
 
     }
 
-    .nav-links {
 
-        display: none;
 
-    }
 
     .hero,
     .project-hero {
