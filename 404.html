@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>404 | Page Not Found | INTRA</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Poppins,sans-serif;
+    background:#f8f4e8;
+    overflow:hidden;
+}
+
+.error-page{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    width:min(1300px,92%);
+
+    margin:auto;
+
+    gap:70px;
+
+}
+
+.error-content h1{
+
+    font-size:140px;
+
+    margin:0;
+
+    color:#c89a3d;
+
+    line-height:1;
+
+}
+
+.error-content h2{
+
+    font-size:58px;
+
+    margin:15px 0;
+
+    color:#111;
+
+}
+
+.error-content p{
+
+    color:#666;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    max-width:520px;
+
+    margin-bottom:40px;
+
+}
+
+.home-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:18px 38px;
+
+background:linear-gradient(135deg,#c89a3d,#e4bc61);
+
+color:white;
+
+text-decoration:none;
+
+font-weight:600;
+
+border-radius:14px;
+
+transition:.35s;
+
+box-shadow:0 20px 40px rgba(200,154,61,.25);
+
+}
+
+.home-btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+.error-image{
+
+position:relative;
+
+}
+
+.error-image img{
+
+width:100%;
+
+border-radius:30px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.18);
+
+}
+
+.logo404{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin-bottom:30px;
+
+}
+
+.logo404 img{
+
+width:70px;
+
+}
+
+.logo404 span{
+
+font-size:40px;
+
+font-weight:700;
+
+}
+
+@media(max-width:900px){
+
+.error-page{
+
+grid-template-columns:1fr;
+
+padding:120px 0 60px;
+
+text-align:center;
+
+}
+
+.logo404{
+
+justify-content:center;
+
+}
+
+.error-content p{
+
+margin:auto auto 40px;
+
+}
+
+.error-content h1{
+
+font-size:100px;
+
+}
+
+.error-content h2{
+
+font-size:40px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="error-page">
+
+<div class="error-content">
+
+<div class="logo404">
+
+<img src="logo.png">
+
+<span>INTRA</span>
+
+</div>
+
+<h1>404</h1>
+
+<h2>Oops! Page Not Found</h2>
+
+<p>
+
+The page you're looking for doesn't exist,
+has been moved, or the link is incorrect.
+
+Let's help you get back to exploring
+beautiful interior designs.
+
+</p>
+
+<a href="index.html" class="home-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Home
+
+</a>
+
+</div>
+
+<div class="error-image">
+
+<img src="404-interior.jpg">
+
+</div>
+
+</section>
+
+</body>
+</html>
