@@ -302,59 +302,7 @@ nav.scrolled .logo img {
 
 }
 
-@media(max-width:768px) {
 
-    .menu-toggle {
-
-        display: block;
-
-    }
-
-    .nav-links {
-
-        position: fixed;
-
-        top: 0;
-
-        right: -100%;
-
-        width: 280px;
-
-        height: 100vh;
-
-        background: white;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        gap: 35px;
-
-        box-shadow: -10px 0 40px rgba(0, 0, 0, .12);
-
-        transition: .4s;
-
-        z-index: 1000;
-
-    }
-
-    .nav-links.active {
-
-        right: 0;
-
-    }
-
-    .nav-links a {
-
-        font-size: 22px;
-
-        text-align: center;
-
-    }
-
-}
 
 .menu-overlay {
 
@@ -1457,15 +1405,6 @@ OUR DESIGN PROCESS
 
 }
 
-@media(max-width:992px) {
-
-    .process-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-}
 
 /*=========================================
 TESTIMONIALS
@@ -1589,27 +1528,6 @@ TESTIMONIALS
 
 }
 
-@media(max-width:768px) {
-
-    .testimonial-card {
-
-        padding: 40px 25px;
-
-    }
-
-    .testimonial-text {
-
-        font-size: 18px;
-
-    }
-
-    .client {
-
-        flex-direction: column;
-
-    }
-
-}
 
 /*=========================================
 FINAL CTA
@@ -1819,21 +1737,6 @@ FINAL CTA
 
 }
 
-@media(max-width:768px) {
-
-    .services-list {
-
-        justify-content: flex-start;
-
-    }
-
-    .service-chip {
-
-        width: 100%;
-
-    }
-
-}
 
 /* ==========================================
    CONNECT
@@ -2586,27 +2489,8 @@ textarea {
     }
 }
 
-@media (max-width:992px) {
 
-    .consult-card {
 
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-
-        padding: 35px;
-
-    }
-
-}
-
-@media(max-width:992px) {
-
-    .consult-card::after {
-        display: none;
-    }
-
-}
 
 /*=========================================
 SUCCESS BOX
@@ -3027,414 +2911,8 @@ LIGHTBOX
 
 }
 
-@media(max-width:768px) {
 
-    .whatsapp-float {
 
-        width: 58px;
-
-        height: 58px;
-
-        font-size: 30px;
-
-        right: 20px;
-
-        bottom: 20px;
-
-    }
-
-}
-
-/* =====================================================
-   RESPONSIVE DESIGN
-===================================================== */
-
-/* ==========================
-   TABLETS
-========================== */
-
-@media (max-width:1024px) {
-
-    nav {
-        width: 95%;
-        padding: 18px 28px;
-    }
-
-    section {
-        padding: 90px 40px;
-    }
-
-    .hero,
-    .why-us,
-    .consult-hero,
-    .consult-card {
-        grid-template-columns: 1fr;
-        gap: 60px;
-        text-align: center;
-    }
-
-    .hero-content,
-    .why-content,
-    .consult-left {
-        text-align: center;
-    }
-
-    .hero-buttons,
-    .hero-trust,
-    .hero-features {
-        justify-content: center;
-    }
-
-    .hero-image {
-        order: -1;
-        margin: 0 auto;
-    }
-
-    .hero-image img {
-        height: 550px;
-    }
-
-    .why-image img {
-        margin: 0;
-        height: 500px;
-    }
-
-    .gallery,
-    .portfolio-grid,
-    .services-grid,
-    .process-grid,
-    .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .consult-card::after {
-        display: none;
-    }
-
-}
-
-
-/* ==========================
-   MOBILE
-========================== */
-
-@media (max-width:768px) {
-
-    section {
-        padding: 70px 20px;
-    }
-
-    nav {
-        width: 95%;
-        padding: 16px 22px;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-    }
-
-    .logo {
-        gap: 12px;
-    }
-
-    .logo img {
-        width: 48px;
-    }
-
-    .logo span {
-        font-size: 24px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 28px;
-        transition: .4s;
-        box-shadow: -10px 0 40px rgba(0, 0, 0, .15);
-        z-index: 1000;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .nav-links a {
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        padding-top: 130px;
-        text-align: center;
-    }
-
-    .hero-content {
-        order: 2;
-    }
-
-    .hero-image {
-        order: 1;
-        margin: 0;
-    }
-
-    .hero-image img {
-        height: 340px;
-        border-radius: 24px;
-    }
-
-    .hero-content h1 {
-        font-size: 42px;
-        line-height: 1.15;
-    }
-
-    .hero-description {
-        font-size: 17px;
-        margin: auto;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .hero-btn,
-    .hero-btn-secondary {
-        width: 100%;
-    }
-
-    /* Floating Cards */
-
-    .floating-card {
-        padding: 14px 18px;
-        border-radius: 16px;
-    }
-
-    .floating-card h2 {
-        font-size: 26px;
-    }
-
-    .floating-card span {
-        font-size: 13px;
-    }
-
-    .card-one {
-        left: 10px;
-        top: 12px;
-    }
-
-    .card-two {
-        right: 10px;
-        bottom: 12px;
-    }
-
-    /* Why Choose Us */
-
-    .why-us {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        text-align: center;
-    }
-
-    .why-image img {
-        margin: 0;
-        height: 300px;
-    }
-
-    .why-content h2 {
-        font-size: 38px;
-    }
-
-    .why-list {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
-
-    /* Categories */
-
-    .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-
-    .category-card {
-        height: 220px;
-    }
-
-    .category-overlay {
-        padding: 14px;
-    }
-
-    .category-overlay h3 {
-        font-size: 18px;
-    }
-
-    .category-overlay span {
-        font-size: 12px;
-    }
-
-    /* Cards */
-
-    .services-grid,
-    .portfolio-grid,
-    .gallery,
-    .stats-grid,
-    .contact-grid,
-    .process-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Footer */
-
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .footer-social {
-        justify-content: center;
-    }
-
-}
-
-
-/* ==========================
-   SMALL PHONES
-========================== */
-
-@media (max-width:480px) {
-
-    .hero-content h1 {
-        font-size: 36px;
-    }
-
-    .hero-description {
-        font-size: 16px;
-    }
-
-    .hero-image img {
-        height: 300px;
-    }
-
-    .category-grid {
-        gap: 10px;
-    }
-
-    .category-card {
-        height: 190px;
-    }
-
-    .category-overlay h3 {
-        font-size: 16px;
-    }
-
-    .floating-card {
-        padding: 12px 14px;
-    }
-
-    .floating-card h2 {
-        font-size: 22px;
-    }
-
-    .floating-card span {
-        font-size: 12px;
-    }
-
-    .card-one {
-        left: 8px;
-        top: 8px;
-    }
-
-    .card-two {
-        right: 8px;
-        bottom: 8px;
-    }
-
-}
-
-/* ===========================
-   Category Grid - Mobile 2-Column Layout
-=========================== */
-@media (max-width: 768px) {
-
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-
-    .category-card {
-        width: 100%;
-        height: 220px;
-        border-radius: 18px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .category-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .category-overlay {
-        padding: 14px;
-    }
-
-    .category-overlay h3 {
-        font-size: 18px;
-        margin-bottom: 4px;
-    }
-
-    .category-overlay span {
-        font-size: 12px;
-    }
-}
-
-@media (max-width:768px) {
-
-    .why-container {
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .why-image {
-        width: 100%;
-        margin-bottom: 30px;
-    }
-
-    .why-image img {
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        border-radius: 25px;
-    }
-
-    .why-content {
-        width: 100%;
-    }
-}
 
 
 /* ==========================================
@@ -3616,12 +3094,7 @@ LIGHTBOX
     padding: 40px;
 }
 
-@media (max-width: 992px) {
-    .estimator-card {
-        grid-template-columns: 1fr;
-        padding: 24px;
-    }
-}
+
 
 .estimator-group {
     margin-bottom: 28px;
@@ -3814,11 +3287,7 @@ LIGHTBOX
     touch-action: pan-y;
 }
 
-@media (max-width: 768px) {
-    .ba-slider {
-        height: 320px;
-    }
-}
+
 
 .ba-image {
     position: absolute;
