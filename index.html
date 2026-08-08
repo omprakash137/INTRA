@@ -3,7 +3,6 @@
 
 <head>
 
-    <title>INTRA</title>
 
     <meta charset="UTF-8">
 
@@ -85,12 +84,10 @@
 </script>
 
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="responsive.css">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
 </head>
@@ -118,7 +115,7 @@
 
         <div class="nav-links">
 
-            <a href="#">Home</a>
+            <a href="#" class="active">Home</a>
             <a href="#services">Portfolio</a>
             <a href="#estimator">Estimator</a>
             <a href="#transformation">Before/After</a>
@@ -138,37 +135,43 @@
     </nav>
     <section class="hero" id="home">
 
-        <div class="hero-content">
+        <div class="hero-bg">
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="grid-pattern"></div>
+        </div>
 
-            <p class="hero-tag">
-                PREMIUM INTERIOR STUDIO
-            </p>
+        <div class="hero-left">
+
+            <span class="hero-tag">
+                PREMIUM INTERIOR DESIGN STUDIO
+            </span>
 
             <h1>
-                Luxury Interior Design
+                Luxury Interiors
                 <br>
-                For Modern Living
+                Crafted For
+                <span>Modern Living.</span>
             </h1>
 
-            <p class="hero-description">
-                From elegant homes to premium commercial spaces,
-                INTRA creates interiors that combine aesthetics,
-                comfort and functionality to perfectly match your lifestyle.
+            <p>
+                Designing elegant homes and premium commercial spaces
+                that combine beauty, comfort and timeless functionality.
             </p>
 
             <div class="hero-buttons">
 
-                <a href="consultation.html" class="hero-btn">
-                    Book Free Consultation
+                <a href="consultation.html" class="primary-btn">
+                    Book Consultation
                 </a>
 
-                <a href="#services" class="hero-btn-secondary">
+                <a href="#services" class="secondary-btn">
                     Explore Projects
                 </a>
 
             </div>
 
-            <div class="hero-trust">
+            <div class="hero-rating">
 
                 <div class="stars">
 
@@ -180,257 +183,333 @@
 
                 </div>
 
-                <p>Trusted by 500+ Happy Families</p>
+                <span>
+                    Trusted by 500+ Happy Families
+                </span>
 
             </div>
 
         </div>
 
 
+        <div class="hero-right">
 
-        <div class="hero-image">
+            <div class="hero-image">
 
-            <img src="living/living1.jpeg" alt="Luxury Interior">
+                <img src="living/living1.jpeg" alt="Luxury Interior">
+
+            </div>
 
             <div class="floating-card card-one">
-
                 <h2>500+</h2>
+                <span>Completed Projects</span>
+            </div>
+
+            <div class="floating-card card-two">
+                <h2>10+</h2>
+                <span>Expert Designers</span>
+            </div>
+
+        </div>
+
+
+    </section>
+    <div id="portfolio-anchor"></div>
+    <section class="featured-categories" id="services">
+
+        <div class="category-grid">
+
+            <a class="category-card living" href="living.html">
+                <img src="living/living1.jpeg">
+                <div class="overlay">
+                    <h3>Living Room</h3>
+                    <span>Explore Collection →</span>
+                </div>
+            </a>
+
+            <a class="category-card kitchen" href="kitchen.html">
+                <img src="kitchen/kitchen1.jpeg">
+                <div class="overlay">
+                    <h3>Kitchen</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card spa" href="spa.html">
+                <img src="spa.jpeg">
+                <div class="overlay">
+                    <h3>Spa</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card restaurant" href="restaurant.html">
+                <img src="restaurant.jpeg">
+                <div class="overlay">
+                    <h3>Restaurant</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card cafe" href="cafe.html">
+                <img src="cafe.jpeg">
+                <div class="overlay">
+                    <h3>Café</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card bedroom" href="bedroom.html">
+                <img src="bedroom/bedroom1.jpeg">
+                <div class="overlay">
+                    <h3>Bedroom</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card dining" href="dining.html">
+                <img src="dining/dining1.jpeg">
+                <div class="overlay">
+                    <h3>Dining</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+            <a class="category-card hotel" href="hotelroom.html">
+                <img src="hotelroom/hotelroom1.jpeg">
+                <div class="overlay">
+                    <h3>Hotel Room</h3>
+                    <span>Explore Designs →</span>
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="numbers-section" id="numbers">
+
+        <div class="section-title">
+
+            <span>OUR IMPACT</span>
+
+            <h2>Numbers That Reflect Excellence</h2>
+
+            <p>
+                Years of experience, hundreds of successful projects,
+                and a reputation built on trust, quality and craftsmanship.
+            </p>
+
+        </div>
+
+        <div class="numbers-wrapper">
+
+            <div class="number-card">
+
+                <div class="icon">
+                    <i class="fa-solid fa-house"></i>
+                </div>
+
+                <h3>
+                    <span class="counter" data-target="500">0</span><small>+</small>
+                </h3>
 
                 <span>Projects Completed</span>
 
             </div>
 
-            <div class="floating-card card-two">
+            <div class="number-card">
 
-                <h2>10+</h2>
+                <div class="icon">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+
+                <h3>
+                    <span class="counter" data-target="500">0</span><small>+</small>
+                </h3>
+
+                <span>Happy Families</span>
+
+            </div>
+
+            <div class="number-card">
+
+                <div class="icon">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                </div>
+
+                <h3>
+                    <span class="counter" data-target="10">0</span><small>+</small>
+                </h3>
 
                 <span>Expert Designers</span>
 
             </div>
 
-        </div>
+            <div class="number-card">
 
-    </section>
-
-    <section class="featured-categories reveal">
-
-        <div class="section-title" id="services">
-
-            <p>OUR EXPERTISE</p>
-
-            <h2>Spaces We Transform</h2>
-
-        </div>
-
-        <div class="category-grid">
-
-            <a href="kitchen.html" class="category-card">
-
-                <img src="kitchen/kitchen1.jpeg" alt="Kitchen">
-
-                <div class="category-overlay">
-
-                    <h3>Kitchen</h3>
-
-                    <span>Explore Designs →</span>
-
+                <div class="icon">
+                    <i class="fa-solid fa-award"></i>
                 </div>
 
-            </a>
+                <h3>
+                    <span class="counter" data-target="8">0</span><small>+</small>
+                </h3>
 
-            <a href="bedroom.html" class="category-card">
-
-                <img src="bedroom/bedroom1.jpeg" alt="Bedroom">
-
-                <div class="category-overlay">
-
-                    <h3>Bedroom</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="living.html" class="category-card">
-
-                <img src="living/living1.jpeg" alt="Living">
-
-                <div class="category-overlay">
-
-                    <h3>Living Room</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="dining.html" class="category-card">
-
-                <img src="dining/dining1.jpeg" alt="Dining">
-
-                <div class="category-overlay">
-
-                    <h3>Dining</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="hotelroom.html" class="category-card">
-
-                <img src="hotelroom/hotelroom1.jpeg" alt="hotelroom">
-
-                <div class="category-overlay">
-
-                    <h3>hotelroom</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="cafe.html" class="category-card">
-
-                <img src="cafe.jpeg" alt="Cafe">
-
-                <div class="category-overlay">
-
-                    <h3>Café</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="spa.html" class="category-card">
-
-                <img src="spa.jpeg" alt="Spa">
-
-                <div class="category-overlay">
-
-                    <h3>Spa</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-            <a href="restaurant.html" class="category-card">
-
-                <img src="restaurant.jpeg" alt="Restaurant">
-
-                <div class="category-overlay">
-
-                    <h3>Restaurant</h3>
-
-                    <span>Explore Designs →</span>
-
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-    <section class="why-us reveal" id="portfolio">
-
-        <div class="why-content">
-
-            <p class="small-title">
-                WHY CHOOSE INTRA
-            </p>
-            <div class="why-image">
-
-                <img src="living/living2.jpeg" alt="Interior Design">
+                <span>Years of Excellence</span>
 
             </div>
 
-            <h2>
-                Designing Spaces With Passion,
-                Precision & Perfection.
-            </h2>
+            <div class="numbers-bottom">
 
+                <div class="rating">
+
+                    <div class="stars">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <h4>4.9/5 Customer Rating</h4>
+
+                    <p>
+                        Trusted by homeowners, hotels, cafés and commercial
+                        businesses across Odisha.
+                    </p>
+
+                </div>
+
+            </div>
+
+    </section>
+
+    <section class="why-section" id="why-us">
+
+        <div class="section-title">
+
+            <span>WHY CHOOSE INTRA</span>
+
+            <h2>Designing Spaces With Passion,<br>Precision & Perfection.</h2>
 
             <p>
-
-                We combine creativity, quality craftsmanship,
-                and transparent communication to deliver interiors
-                that exceed expectations.
-
+                Every project follows a refined workflow from concept to handover,
+                ensuring elegance, quality and complete transparency.
             </p>
 
-            <div class="why-list">
+        </div>
 
-                <div><i class="fa-solid fa-check"></i> Customized Interior Designs</div>
 
-                <div><i class="fa-solid fa-check"></i> Premium Materials</div>
+        <div class="why-wrapper">
 
-                <div><i class="fa-solid fa-check"></i> Transparent Pricing</div>
+            <div class="why-image">
+                <div class="floating-badge">
+                    <h3>500+</h3>
+                    <p>Luxury Projects<br>Completed</p>
+                </div>
 
-                <div><i class="fa-solid fa-check"></i> Dedicated Project Manager</div>
-
-                <div><i class="fa-solid fa-check"></i> On-Time Delivery</div>
-
-                <div><i class="fa-solid fa-check"></i> End-to-End Execution</div>
-
+                <img src="hotelroom/hotelroom3.jpeg" alt="Hotel Room">
             </div>
 
-            <a href="consultation.html" class="design-btn">
-                Get Free Consultation →
-            </a>
+
+            <div class="timeline">
+
+                <div class="line"></div>
+
+                <div class="step">
+
+                    <div class="number">01</div>
+
+                    <div class="content">
+
+                        <h3>Consultation</h3>
+
+                        <p>Understanding your vision, lifestyle and aspirations.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="number">02</div>
+
+                    <div class="content">
+
+                        <h3>Site Visit</h3>
+
+                        <p>Detailed measurements and complete project discussion.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="number">03</div>
+
+                    <div class="content">
+
+                        <h3>Concept Design</h3>
+
+                        <p>Layouts, moodboards and elegant space planning.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="number">04</div>
+
+                    <div class="content">
+
+                        <h3>Execution</h3>
+
+                        <p>Premium craftsmanship with complete supervision.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="number">05</div>
+
+                    <div class="content">
+
+                        <h3>Quality Check</h3>
+
+                        <p>Every detail inspected before final delivery.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="number">06</div>
+
+                    <div class="content">
+
+                        <h3>Project Handover</h3>
+
+                        <p>Your dream space, ready to experience.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </section>
-    <section class="numbers reveal" reveal>
 
-        <div class="container">
-
-            <h2>Let Our Numbers Speak</h2>
-
-            <div class="title-decoration">
-                <span></span>
-                <i class="fa-solid fa-circle"></i>
-                <i class="fa-solid fa-circle"></i>
-                <i class="fa-solid fa-circle"></i>
-                <span></span>
-            </div>
-
-            <div class="stats-grid">
-
-                <div class="stat-card">
-                    <h3 class="counter" data-target="500">0</h3>
-                    <p>Projects Completed</p>
-                </div>
-
-                <div class="stat-card">
-                    <h3 class="counter" data-target="50">0</h3>
-                    <p>Happy Clients</p>
-                </div>
-
-                <div class="stat-card">
-                    <h3 class="counter" data-target="10">0</h3>
-                    <p>Expert Designers</p>
-                </div>
-
-                <div class="stat-card">
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Cities Served</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
     <section class="process reveal" id="process">
 
         <div class="section-title">
@@ -665,7 +744,96 @@
         </div>
     </section>
 
-    <section class="testimonials reveal">
+    <!-- ==========================================
+     CONSULTATION CTA
+========================================== -->
+
+    <section class="consultation-cta reveal" id="consultation">
+
+        <div class="cta-glow"></div>
+
+        <div class="consultation-card">
+
+            <div class="cta-content">
+
+                <span class="cta-eyebrow">
+                    LET'S CREATE SOMETHING BEAUTIFUL
+                </span>
+
+                <h2>
+                    Your Space.
+                    <span>Our Expertise.</span>
+                </h2>
+
+                <p>
+                    From the first idea to the final detail,
+                    our designers turn your vision into a
+                    beautifully crafted space made just for you.
+                </p>
+
+                <div class="cta-actions">
+
+                    <a href="consultation.html" class="cta-primary">
+                        Book a Free Consultation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="tel:+919337785473" class="cta-secondary">
+                        <i class="fa-solid fa-phone"></i>
+                        Talk to a Designer
+                    </a>
+
+                </div>
+
+                <div class="cta-trust">
+
+                    <span>
+                        <i class="fa-solid fa-check"></i>
+                        Free Initial Consultation
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-check"></i>
+                        Personalized Design
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-check"></i>
+                        No Obligation
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="cta-visual">
+
+                <div class="cta-image">
+
+                    <img src="living/living1.jpeg" alt="Luxury Interior Design by INTRA">
+
+                    <div class="cta-image-overlay"></div>
+
+                </div>
+
+                <div class="cta-badge">
+
+                    <strong>500+</strong>
+
+                    <span>
+                        Spaces<br>
+                        Transformed
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="testimonials reveal" id="testimonial">
 
         <div class="section-title">
 
@@ -727,48 +895,7 @@
         </div>
 
     </section>
-    <section class="cta reveal">
 
-        <div class="cta-content">
-
-            <p class="small-title">
-                LET'S CREATE SOMETHING BEAUTIFUL
-            </p>
-
-            <h2>
-                Ready To Transform
-                Your Space?
-            </h2>
-
-            <p>
-
-                Whether you're designing your dream home,
-                renovating a single room or planning a commercial
-                project, our experts are ready to help.
-
-            </p>
-
-            <div class="cta-buttons">
-
-                <a href="consultation.html" class="cta-btn">
-
-                    Book Free Consultation →
-
-                </a>
-
-                <a href="tel:+919337785473" class="cta-phone">
-
-                    <i class="fa-solid fa-phone"></i>
-
-                    Call Now
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
     <section class="all-services reveal" id="all-services">
 
         <div class="section-heading">
@@ -785,7 +912,7 @@
 
         </div>
 
-        <div class="services-list">
+        <div class="services-list" id="services-list">
 
             <div class="service-item">
                 <i class="fa-solid fa-house"></i>
@@ -997,8 +1124,7 @@
         </div>
 
     </section>
-    <footer id="contact reveal">
-
+    <footer id="contact">
         <div class="footer-container">
 
             <div class="footer-about">

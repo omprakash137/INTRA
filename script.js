@@ -1,633 +1,2573 @@
-/* ============================
-   ACTIVE NAVIGATION
-============================ */
+/* =========================================================
+   INTRA INTERIORS — UNIVERSAL SCRIPT
+   PART 1
+   ========================================================= */
 
-const sections = document.querySelectorAll("section[id], div[id], footer[id]");
-const navLinks = document.querySelectorAll("nav a");
 
-if (sections.length) {
+/* =========================================================
+   01. GLOBAL CONFIGURATION
+   ========================================================= */
 
-    window.addEventListener("scroll", () => {
+const INTRA = {
 
-        let current = "";
+    homePage: "index.html",
 
-        sections.forEach(section => {
+    navOffset: 20,
 
-            const sectionTop = section.offsetTop - 150;
+    revealOffset: 100,
 
-            if (window.scrollY >= sectionTop) {
+    counterDuration: 2000
 
-                current = section.id;
+};
 
-            }
 
-        });
+/* =========================================================
+   02. PAGE HELPERS
+   ========================================================= */
 
-        navLinks.forEach(link => {
+function getCurrentPage() {
 
-            link.classList.remove("active");
+    let page =
+        window.location.pathname
+            .split("/")
+            .pop()
+            .toLowerCase();
 
-            if (link.getAttribute("href") === "#" + current) {
+    /*
+       When opening the website from a folder,
+       pathname can be empty.
+    */
 
-                link.classList.add("active");
+    if (!page) {
 
-            }
+        page = "index.html";
 
-        });
+    }
 
-    });
-
-}
-const menuToggle = document.querySelector(".menu-toggle");
-const mobileNav = document.querySelector(".nav-links");
-const overlay = document.querySelector(".menu-overlay");
-
-if (menuToggle) {
-
-    menuToggle.addEventListener("click", () => {
-
-        menuToggle.classList.toggle("active");
-
-        mobileNav.classList.toggle("active");
-
-        overlay.classList.toggle("active");
-
-        document.body.classList.toggle("menu-open");
-
-    });
+    return page;
 
 }
-overlay.addEventListener("click", () => {
 
-    menuToggle.classList.remove("active");
 
-    mobileNav.classList.remove("active");
+function isHomePage() {
 
-    overlay.classList.remove("active");
+    const page = getCurrentPage();
 
-    document.body.classList.remove("menu-open");
+    return (
+        page === "" ||
+        page === "index.html"
+    );
 
-});
-document.querySelectorAll(".nav-links a").forEach(link => {
+}
 
-    link.addEventListener("click", () => {
+
+/* =========================================================
+   03. MOBILE MENU
+   ========================================================= */
+
+function closeMobileMenu() {
+
+    const menuToggle =
+        document.querySelector(".menu-toggle");
+
+    const navLinks =
+        document.querySelector(".nav-links");
+
+    const overlay =
+        document.querySelector(".menu-overlay");
+
+
+    if (menuToggle) {
 
         menuToggle.classList.remove("active");
 
-        mobileNav.classList.remove("active");
+    }
+
+
+    if (navLinks) {
+
+        navLinks.classList.remove("active");
+
+    }
+
+
+    if (overlay) {
 
         overlay.classList.remove("active");
 
-        document.body.classList.remove("menu-open");
+    }
 
-    });
 
-});
-/* ==========================================
-   CONSULTATION FORM
-========================================== */
-
-const form = document.getElementById("consultForm");
-
-if (form) {
-
-    emailjs.init({
-        publicKey: "JQNKRXUA8AB_kcVmm"
-    });
-
-    form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
-        emailjs.sendForm(
-            "service_82w12ja",
-            "template_sanqo6c",
-            this
-        )
-            .then(() => {
-
-                console.log("Email sent!");
-
-                document.getElementById("formBox").style.display = "none";
-                document.getElementById("successBox").style.display = "block";
-
-            })
-            .catch((error) => {
-
-                console.log(error);
-                alert(error.message || "Something went wrong.");
-
-            });
-
-    });
+    document.body.classList.remove(
+        "menu-open"
+    );
 
 }
 
-/* ==========================================
-   LOADER
-========================================== */
 
-window.addEventListener("load", () => {
+function openMobileMenu() {
 
-    const loader = document.getElementById("loader");
+    const menuToggle =
+        document.querySelector(".menu-toggle");
 
-    if (loader) {
+    const navLinks =
+        document.querySelector(".nav-links");
 
-        loader.classList.add("hide");
+    const overlay =
+        document.querySelector(".menu-overlay");
 
-        setTimeout(() => {
 
-            loader.remove();
+    if (menuToggle) {
 
-        }, 500);
+        menuToggle.classList.add("active");
 
     }
 
-});
-/* ==========================
-   SCROLL REVEAL
-========================== */
 
-const reveals = document.querySelectorAll(".reveal");
+    if (navLinks) {
 
-function revealSections() {
+        navLinks.classList.add("active");
 
-    reveals.forEach(section => {
+    }
 
-        const windowHeight = window.innerHeight;
 
-        const revealTop = section.getBoundingClientRect().top;
+    if (overlay) {
 
-        const revealPoint = 120;
+        overlay.classList.add("active");
 
-        if (revealTop < windowHeight - revealPoint) {
+    }
 
-            section.classList.add("active");
 
-        }
-
-    });
+    document.body.classList.add(
+        "menu-open"
+    );
 
 }
-/* ==========================
-   SCROLL REVEAL PORTFOLIO
-========================== */
 
-window.addEventListener("scroll", () => {
 
-    reveals.forEach(item => {
+function initMobileMenu() {
 
-        const top = item.getBoundingClientRect().top;
+    const menuToggle =
+        document.querySelector(".menu-toggle");
 
-        const windowHeight = window.innerHeight;
+    const overlay =
+        document.querySelector(".menu-overlay");
 
-        if (top < windowHeight - 100) {
 
-            item.classList.add("active");
+    if (menuToggle) {
 
-        }
+        menuToggle.addEventListener(
+            "click",
+            function (event) {
 
-    });
+                event.stopPropagation();
 
-});
+                const navLinks =
+                    document.querySelector(
+                        ".nav-links"
+                    );
 
-/* ==========================================
-   ANIMATED COUNTERS
-========================================== */
+                if (
+                    navLinks &&
+                    navLinks.classList.contains(
+                        "active"
+                    )
+                ) {
 
-const counters = document.querySelectorAll(".counter");
+                    closeMobileMenu();
 
-const counterObserver = new IntersectionObserver((entries) => {
+                }
 
-    entries.forEach(entry => {
+                else {
 
-        if (!entry.isIntersecting) return;
+                    openMobileMenu();
 
-        const counter = entry.target;
-        const target = +counter.dataset.target;
-
-        let duration = 2000;
-
-        if (target <= 10) {
-            duration = 2100;
-        }
-
-        if (target <= 5) {
-            duration = 2150;
-        }
-
-        const increment = target / (duration / 16);
-
-        let current = 0;
-
-        function updateCounter() {
-
-            current += increment;
-
-            if (current < target) {
-
-                counter.textContent = Math.ceil(current);
-
-                requestAnimationFrame(updateCounter);
-
-            } else {
-
-                counter.textContent = target + "+";
+                }
 
             }
+        );
 
-        }
-
-        updateCounter();
-
-        counterObserver.unobserve(counter);
-
-    });
-
-}, {
-    threshold: 0.5
-});
-
-counters.forEach(counter => counterObserver.observe(counter));
-/*==========================
-   LEGACY LIGHTBOX
-==========================*/
-const legacyGalleryImages = document.querySelectorAll(".gallery-img");
-const legacyLightbox = document.getElementById("lightbox");
-const legacyLightboxImg = document.getElementById("lightbox-img");
-const legacyCloseBtn = document.querySelector(".close");
-
-if (legacyLightbox && legacyLightboxImg) {
-    legacyGalleryImages.forEach(img => {
-        img.addEventListener("click", () => {
-            legacyLightbox.style.display = "flex";
-            legacyLightboxImg.src = img.src;
-        });
-    });
-
-    if (legacyCloseBtn) {
-        legacyCloseBtn.addEventListener("click", () => {
-            legacyLightbox.style.display = "none";
-        });
     }
 
-    legacyLightbox.addEventListener("click", (e) => {
-        if (e.target === legacyLightbox) {
-            legacyLightbox.style.display = "none";
-        }
-    });
+
+    if (overlay) {
+
+        overlay.addEventListener(
+            "click",
+            function () {
+
+                closeMobileMenu();
+
+            }
+        );
+
+    }
+
 }
-/*=========================================
-TOP BUTTON
-=========================================*/
-const topBtn = document.getElementById("topBtn");
 
-window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 500) {
+/* =========================================================
+   04. UNIVERSAL NAVIGATION
+   ========================================================= */
 
-        topBtn.classList.add("show");
+function initNavigation() {
 
-    } else {
+    const navLinks =
+        document.querySelectorAll(
+            ".nav-links a"
+        );
 
-        topBtn.classList.remove("show");
+
+    navLinks.forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function (event) {
+
+                const href =
+                    this.getAttribute("href");
+
+
+                if (!href) {
+
+                    return;
+
+                }
+
+
+                /*
+                =========================================
+                EXTERNAL LINK
+                =========================================
+                */
+
+                if (
+                    href.startsWith("http://") ||
+                    href.startsWith("https://") ||
+                    href.startsWith("tel:") ||
+                    href.startsWith("mailto:")
+                ) {
+
+                    closeMobileMenu();
+
+                    return;
+
+                }
+
+
+                /*
+                =========================================
+                HOME — #
+                =========================================
+                */
+
+                if (href === "#") {
+
+                    event.preventDefault();
+
+                    closeMobileMenu();
+
+                    window.scrollTo({
+
+                        top: 0,
+
+                        behavior: "smooth"
+
+                    });
+
+                    return;
+
+                }
+
+
+                /*
+                =========================================
+                NORMAL PAGE
+                Example:
+
+                consultation.html
+                living.html
+                =========================================
+                */
+
+                if (!href.includes("#")) {
+
+                    closeMobileMenu();
+
+                    return;
+
+                }
+
+
+                /*
+                =========================================
+                PAGE + SECTION
+
+                Example:
+
+                index.html#services
+                index.html#estimator
+                =========================================
+                */
+
+                const hashIndex =
+                    href.indexOf("#");
+
+
+                const page =
+                    href.substring(
+                        0,
+                        hashIndex
+                    );
+
+
+                const sectionId =
+                    href.substring(
+                        hashIndex + 1
+                    );
+
+
+                if (!sectionId) {
+
+                    return;
+
+                }
+
+
+                const currentPage =
+                    getCurrentPage();
+
+
+                const targetPage =
+                    page
+                        ? page.toLowerCase()
+                        : currentPage;
+
+
+                const samePage =
+                    (
+                        targetPage ===
+                        currentPage
+                    )
+                    ||
+                    (
+                        (
+                            targetPage ===
+                            "index.html"
+                        )
+                        &&
+                        isHomePage()
+                    );
+
+
+                /*
+                =========================================
+                SAME PAGE
+                =========================================
+                */
+
+                if (samePage) {
+
+                    const target =
+                        document.getElementById(
+                            sectionId
+                        );
+
+
+                    /*
+                    If target doesn't exist,
+                    allow browser/default behaviour.
+                    */
+
+                    if (!target) {
+
+                        return;
+
+                    }
+
+
+                    /*
+                    IMPORTANT:
+
+                    Stop the browser's default
+                    anchor jump.
+
+                    Then perform ONLY ONE
+                    controlled scroll.
+                    */
+
+                    event.preventDefault();
+
+                    closeMobileMenu();
+
+
+                    const navbar =
+                        document.querySelector(
+                            "nav"
+                        );
+
+
+                    const navHeight =
+                        navbar
+                            ? navbar.offsetHeight
+                            : 0;
+
+
+                    const targetPosition =
+                        target.getBoundingClientRect().top
+                        +
+                        window.scrollY
+                        -
+                        navHeight
+                        -
+                        INTRA.navOffset;
+
+
+                    window.scrollTo({
+
+                        top:
+                            Math.max(
+                                0,
+                                targetPosition
+                            ),
+
+                        behavior: "smooth"
+
+                    });
+
+
+                    return;
+
+                }
+
+
+                /*
+                =========================================
+                CROSS-PAGE
+                =========================================
+
+                Example:
+
+                consultation.html
+                → index.html#services
+                */
+
+                event.preventDefault();
+
+                closeMobileMenu();
+
+
+                /*
+                Do NOT use sessionStorage.
+
+                Do NOT perform another scroll
+                on the current page.
+
+                Let the browser handle the
+                destination hash exactly once.
+                */
+
+                window.location.href =
+                    page +
+                    "#" +
+                    sectionId;
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   05. NAVBAR SCROLL EFFECT
+   ========================================================= */
+
+function initNavbarScroll() {
+
+    const navbar =
+        document.querySelector("nav");
+
+
+    if (!navbar) {
+
+        return;
 
     }
 
-});
-/*=========================================
-SCROLL NAV
-=========================================*/
-const navbar = document.querySelector("nav");
 
-if (navbar) {
-
-    window.addEventListener("scroll", () => {
+    function updateNavbar() {
 
         if (window.scrollY > 40) {
 
-            navbar.classList.add("scrolled");
+            navbar.classList.add(
+                "scrolled"
+            );
 
         }
 
         else {
 
-            navbar.classList.remove("scrolled");
+            navbar.classList.remove(
+                "scrolled"
+            );
 
         }
 
-    });
+    }
 
-}
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
 
-const animatedElements = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-right, .reveal-scale"
-);
-
-function revealOnScroll() {
-
-    animatedElements.forEach(item => {
-
-        const windowHeight = window.innerHeight;
-        const revealTop = item.getBoundingClientRect().top;
-        const revealPoint = 120;
-
-        if (revealTop < windowHeight - revealPoint) {
-            item.classList.add("active");
+    window.addEventListener(
+        "scroll",
+        updateNavbar,
+        {
+            passive: true
         }
+    );
 
-    });
 
-}
-
-window.addEventListener("scroll", revealOnScroll);
-
-revealOnScroll();
-/* ==========================================
-   CURSOR GLOW
-========================================== */
-const glow = document.querySelector(".cursor-glow");
-
-if (glow) {
-
-    document.addEventListener("mousemove", (e) => {
-
-        glow.style.left = e.clientX + "px";
-
-        glow.style.top = e.clientY + "px";
-
-    });
+    updateNavbar();
 
 }
 
-/* ==========================================
-   INTERACTIVE COST ESTIMATOR
-========================================== */
-const areaSlider = document.getElementById("areaSlider");
-const areaVal = document.getElementById("areaVal");
-const typeBtns = document.querySelectorAll("#calcPropertyType .type-btn");
-const tierCards = document.querySelectorAll("#calcTier .tier-card");
-const totalEstimate = document.getElementById("totalEstimate");
-const bWoodwork = document.getElementById("bWoodwork");
-const bLighting = document.getElementById("bLighting");
-const bDecor = document.getElementById("bDecor");
-const bFee = document.getElementById("bFee");
-const bookWithEstimateBtn = document.getElementById("bookWithEstimateBtn");
 
-if (areaSlider && totalEstimate) {
-    let currentRate = 1500;
-    let currentArea = parseInt(areaSlider.value);
-    let currentMultiplier = 1.0;
-    let selectedTypeName = "2 BHK";
-    let selectedTierName = "Essential";
+/* =========================================================
+   06. ACTIVE NAVIGATION
+   ========================================================= */
 
-    function formatRupee(amount) {
-        return "₹" + Math.round(amount).toLocaleString('en-IN');
-    }
+/*
+   IMPORTANT:
 
-    function updateEstimate() {
-        currentArea = parseInt(areaSlider.value);
-        areaVal.textContent = currentArea.toLocaleString('en-IN') + " Sq Ft";
+   We explicitly define the sections.
 
-        const baseTotal = currentArea * currentRate * currentMultiplier;
-        const minCost = baseTotal;
-        const maxCost = baseTotal * 1.2;
+   We DO NOT scan every section/div on the page.
 
-        totalEstimate.textContent = `${formatRupee(minCost)} - ${formatRupee(maxCost)}`;
+   This prevents nested elements from becoming
+   accidental navigation targets.
+*/
 
-        // Breakdown calculation
-        bWoodwork.textContent = formatRupee(minCost * 0.50);
-        bLighting.textContent = formatRupee(minCost * 0.20);
-        bDecor.textContent = formatRupee(minCost * 0.20);
-        bFee.textContent = formatRupee(minCost * 0.10);
+const INTRA_NAV_SECTIONS = [
 
-        // Update consultation link with estimate query parameters
-        if (bookWithEstimateBtn) {
-            const query = `?type=${encodeURIComponent(selectedTypeName)}&area=${currentArea}&tier=${encodeURIComponent(selectedTierName)}&est=${encodeURIComponent(formatRupee(minCost) + " - " + formatRupee(maxCost))}`;
-            bookWithEstimateBtn.setAttribute("href", "consultation.html" + query);
-        }
-    }
+    "services",
 
-    typeBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            typeBtns.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            currentRate = parseInt(btn.dataset.rate);
-            selectedTypeName = btn.textContent.trim();
-            updateEstimate();
-        });
-    });
+    "estimator",
 
-    tierCards.forEach(card => {
-        card.addEventListener("click", () => {
-            tierCards.forEach(c => c.classList.remove("active"));
-            card.classList.add("active");
-            currentMultiplier = parseFloat(card.dataset.multiplier);
-            selectedTierName = card.dataset.tier;
-            updateEstimate();
-        });
-    });
+    "transformation",
 
-    areaSlider.addEventListener("input", updateEstimate);
-    updateEstimate();
-}
+    "all-services",
 
-/* ==========================================
-   AUTO PRE-FILL CONSULTATION FROM ESTIMATE
-========================================== */
-if (window.location.pathname.includes("consultation.html")) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const estType = urlParams.get("type");
-    const estArea = urlParams.get("area");
-    const estTier = urlParams.get("tier");
-    const estVal = urlParams.get("est");
+    "contact"
 
-    if (estType || estVal) {
-        const propSelect = document.getElementById("formPropertyType");
-        const msgTextarea = document.getElementById("formMessage");
+];
 
-        if (propSelect && estType) {
-            for (let opt of propSelect.options) {
-                if (opt.value.toLowerCase().includes(estType.toLowerCase()) || estType.toLowerCase().includes(opt.value.toLowerCase())) {
-                    opt.selected = true;
-                    break;
-                }
-            }
-        }
 
-        if (msgTextarea && estVal) {
-            msgTextarea.value = `Estimated scope: ${estType || 'Property'} (${estArea || ''} Sq Ft, ${estTier || 'Standard'} Tier).\nEstimated Budget Range: ${estVal}.\nLooking forward to discussing 3D designs and consultation options.`;
-        }
-    }
+function updateActiveNavigation() {
 
-    // Set min date for preferred date picker to today
-    const dateInput = document.getElementById("formDate");
-    if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute("min", today);
-        dateInput.value = today;
-    }
-
-    // Time Slot Chips interaction
-    const slotChips = document.querySelectorAll(".slot-chip");
-    const selectedSlotInput = document.getElementById("selectedTimeSlot");
-    slotChips.forEach(chip => {
-        chip.addEventListener("click", () => {
-            slotChips.forEach(c => c.classList.remove("active"));
-            chip.classList.add("active");
-            if (selectedSlotInput) {
-                selectedSlotInput.value = chip.dataset.slot;
-            }
-        });
-    });
-}
-
-/* ==========================================
-   BEFORE & AFTER TRANSFORMATION SLIDER
-========================================== */
-const baSlider = document.getElementById("baSlider");
-const baBefore = document.getElementById("baBefore");
-const baHandle = document.getElementById("baHandle");
-
-if (baSlider && baBefore && baHandle) {
-    let isDragging = false;
-
-    function moveSlider(x) {
-        const rect = baSlider.getBoundingClientRect();
-        let position = x - rect.left;
-
-        if (position < 0) position = 0;
-        if (position > rect.width) position = rect.width;
-
-        const percentage = (position / rect.width) * 100;
-        baBefore.style.width = percentage + "%";
-        baHandle.style.left = percentage + "%";
-    }
-
-    baSlider.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        moveSlider(e.clientX);
-    });
-
-    window.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        moveSlider(e.clientX);
-    });
-
-    window.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-
-    // Touch events for mobile responsiveness
-    baSlider.addEventListener("touchstart", (e) => {
-        isDragging = true;
-        if (e.touches[0]) moveSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    window.addEventListener("touchmove", (e) => {
-        if (!isDragging) return;
-        if (e.touches[0]) moveSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    window.addEventListener("touchend", () => {
-        isDragging = false;
-    });
-}
-
-/* ==========================================
-   FULL-SCREEN LIGHTBOX GALLERY MODAL
-========================================== */
-const lightboxModal = document.getElementById("lightboxModal");
-const lightboxImg = document.getElementById("lightboxImg");
-const lightboxCaption = document.getElementById("lightboxCaption");
-const lightboxClose = document.getElementById("lightboxClose");
-const lightboxPrev = document.getElementById("lightboxPrev");
-const lightboxNext = document.getElementById("lightboxNext");
-
-if (lightboxModal && lightboxImg) {
-    let galleryImages = [];
-    let currentIndex = 0;
-
-    function initLightbox() {
-        const images = document.querySelectorAll(
-            ".category-card img, .hero-image img, .consult-right img, .portfolio-grid img, .service-card img, .ba-after img"
+    const navLinks =
+        document.querySelectorAll(
+            ".nav-links a"
         );
 
-        galleryImages = Array.from(images);
 
-        galleryImages.forEach((img, idx) => {
-            img.style.cursor = "zoom-in";
-            img.addEventListener("click", (e) => {
-                e.preventDefault();
-                openLightbox(idx);
-            });
+    if (!navLinks.length) {
+
+        return;
+
+    }
+
+
+    /*
+       Only run active navigation on Home.
+    */
+
+    if (!isHomePage()) {
+
+        navLinks.forEach(link => {
+
+            link.classList.remove(
+                "active"
+            );
+
         });
+
+        return;
+
     }
 
-    function openLightbox(index) {
-        currentIndex = index;
-        const targetImg = galleryImages[currentIndex];
-        if (!targetImg) return;
 
-        lightboxImg.src = targetImg.src;
-        lightboxCaption.textContent = targetImg.alt || "INTRA Luxury Interior Project";
-        lightboxModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
+    let currentSection = "";
 
-    function closeLightbox() {
-        lightboxModal.classList.remove("active");
-        document.body.style.overflow = "";
-    }
 
-    function showNext() {
-        currentIndex = (currentIndex + 1) % galleryImages.length;
-        openLightbox(currentIndex);
-    }
+    /*
+    =========================================
+    FIND CURRENT SECTION
+    =========================================
+    */
 
-    function showPrev() {
-        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-        openLightbox(currentIndex);
-    }
+    INTRA_NAV_SECTIONS.forEach(id => {
 
-    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
-    if (lightboxNext) lightboxNext.addEventListener("click", showNext);
-    if (lightboxPrev) lightboxPrev.addEventListener("click", showPrev);
+        const section =
+            document.getElementById(id);
 
-    lightboxModal.addEventListener("click", (e) => {
-        if (e.target === lightboxModal) closeLightbox();
+
+        if (!section) {
+
+            return;
+
+        }
+
+
+        const top =
+            section.getBoundingClientRect().top
+            +
+            window.scrollY
+            -
+            180;
+
+
+        if (
+            window.scrollY >= top
+        ) {
+
+            currentSection = id;
+
+        }
+
     });
 
-    document.addEventListener("keydown", (e) => {
-        if (!lightboxModal.classList.contains("active")) return;
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") showNext();
-        if (e.key === "ArrowLeft") showPrev();
+
+    /*
+    =========================================
+    UPDATE NAV LINKS
+    =========================================
+    */
+
+    navLinks.forEach(link => {
+
+        link.classList.remove(
+            "active"
+        );
+
+
+        const href =
+            link.getAttribute("href");
+
+
+        if (
+            href ===
+            "#" + currentSection
+        ) {
+
+            link.classList.add(
+                "active"
+            );
+
+        }
+
+
+        if (
+            href ===
+            "index.html#" +
+            currentSection
+        ) {
+
+            link.classList.add(
+                "active"
+            );
+
+        }
+
     });
 
-    initLightbox();
 }
+
+
+function initActiveNavigation() {
+
+    window.addEventListener(
+        "scroll",
+        updateActiveNavigation,
+        {
+            passive: true
+        }
+    );
+
+
+    updateActiveNavigation();
+
+}
+
+
+/* =========================================================
+   07. LOADER
+   ========================================================= */
+
+function initLoader() {
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            const loader =
+                document.getElementById(
+                    "loader"
+                );
+
+
+            if (!loader) {
+
+                return;
+
+            }
+
+
+            loader.classList.add(
+                "hide"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    if (
+                        loader &&
+                        loader.parentNode
+                    ) {
+
+                        loader.remove();
+
+                    }
+
+                },
+                500
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   08. SCROLL REVEAL
+   ========================================================= */
+
+function initScrollReveal() {
+
+    const elements =
+        document.querySelectorAll(
+            ".reveal, .reveal-left, .reveal-right, .reveal-scale"
+        );
+
+
+    if (!elements.length) {
+
+        return;
+
+    }
+
+
+    /*
+       Use IntersectionObserver.
+
+       This is much cleaner than having
+       multiple scroll listeners.
+    */
+
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "active"
+                            );
+
+
+                            /*
+                            Once revealed,
+                            stop observing it.
+                            */
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+
+                threshold: 0.12,
+
+                rootMargin:
+                    "0px 0px -80px 0px"
+
+            }
+        );
+
+
+    elements.forEach(
+        function (element) {
+
+            observer.observe(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   09. ANIMATED COUNTERS
+========================================================= */
+
+function initCounters() {
+
+    const counters =
+        document.querySelectorAll(
+            ".counter"
+        );
+
+
+    if (!counters.length) {
+
+        return;
+
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const counter =
+                            entry.target;
+
+
+                        const target =
+                            parseInt(
+                                counter.dataset.target,
+                                10
+                            );
+
+
+                        if (
+                            Number.isNaN(
+                                target
+                            )
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const duration =
+                            target <= 10
+                                ? 2100
+                                : 2000;
+
+
+                        const startTime =
+                            performance.now();
+
+
+                        function animateCounter(
+                            currentTime
+                        ) {
+
+                            const elapsed =
+                                currentTime -
+                                startTime;
+
+
+                            const progress =
+                                Math.min(
+                                    elapsed /
+                                    duration,
+                                    1
+                                );
+
+
+                            /*
+                            Ease-out effect
+                            */
+
+                            const eased =
+                                1 -
+                                Math.pow(
+                                    1 - progress,
+                                    3
+                                );
+
+
+                            const value =
+                                Math.floor(
+                                    eased *
+                                    target
+                                );
+
+
+                            counter.textContent =
+                                value;
+
+
+                            if (
+                                progress < 1
+                            ) {
+
+                                requestAnimationFrame(
+                                    animateCounter
+                                );
+
+                            }
+
+                            else {
+
+                                counter.textContent =
+                                    target;
+
+                            }
+
+                        }
+
+
+                        requestAnimationFrame(
+                            animateCounter
+                        );
+
+
+                        observer.unobserve(
+                            counter
+                        );
+
+                    }
+                );
+
+            },
+            {
+
+                threshold: 0.5
+
+            }
+        );
+
+
+    counters.forEach(
+        function (counter) {
+
+            observer.observe(
+                counter
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   10. INITIALIZE PART 1
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        initMobileMenu();
+
+        initNavigation();
+
+        initNavbarScroll();
+
+        initActiveNavigation();
+
+        initLoader();
+
+        initScrollReveal();
+
+        initCounters();
+
+    }
+);
+/* ==========================================
+   09. COST ESTIMATOR
+========================================== */
+
+(function () {
+
+    const areaSlider = document.getElementById("areaSlider");
+    const areaVal = document.getElementById("areaVal");
+
+    const typeBtns =
+        document.querySelectorAll("#calcPropertyType .type-btn");
+
+    const tierCards =
+        document.querySelectorAll("#calcTier .tier-card");
+
+    const totalEstimate =
+        document.getElementById("totalEstimate");
+
+    const bWoodwork =
+        document.getElementById("bWoodwork");
+
+    const bLighting =
+        document.getElementById("bLighting");
+
+    const bDecor =
+        document.getElementById("bDecor");
+
+    const bFee =
+        document.getElementById("bFee");
+
+    const bookBtn =
+        document.getElementById("bookWithEstimateBtn");
+
+
+    /* ------------------------------------------
+       Only run if estimator exists
+    ------------------------------------------ */
+
+    if (!areaSlider || !totalEstimate) return;
+
+
+    let currentRate = 1500;
+    let currentMultiplier = 1;
+
+    let selectedType = "2 BHK";
+    let selectedTier = "Essential";
+
+
+    /* ------------------------------------------
+       FORMAT RUPEES
+    ------------------------------------------ */
+
+    function formatRupee(amount) {
+
+        return "₹" +
+            Math.round(amount)
+                .toLocaleString("en-IN");
+
+    }
+
+
+    /* ------------------------------------------
+       UPDATE ESTIMATE
+    ------------------------------------------ */
+
+    function updateEstimate() {
+
+        const area =
+            parseInt(areaSlider.value, 10);
+
+
+        /* Area display */
+
+        if (areaVal) {
+
+            areaVal.textContent =
+                area.toLocaleString("en-IN") +
+                " Sq Ft";
+
+        }
+
+
+        /* Calculate */
+
+        const base =
+            area *
+            currentRate *
+            currentMultiplier;
+
+
+        const minimum =
+            base;
+
+        const maximum =
+            base * 1.20;
+
+
+        /* Main estimate */
+
+        totalEstimate.textContent =
+            formatRupee(minimum) +
+            " - " +
+            formatRupee(maximum);
+
+
+        /* Breakdown */
+
+        if (bWoodwork) {
+
+            bWoodwork.textContent =
+                formatRupee(minimum * 0.50);
+
+        }
+
+
+        if (bLighting) {
+
+            bLighting.textContent =
+                formatRupee(minimum * 0.20);
+
+        }
+
+
+        if (bDecor) {
+
+            bDecor.textContent =
+                formatRupee(minimum * 0.20);
+
+        }
+
+
+        if (bFee) {
+
+            bFee.textContent =
+                formatRupee(minimum * 0.10);
+
+        }
+
+
+        /* --------------------------------------
+           CONSULTATION LINK
+        -------------------------------------- */
+
+        if (bookBtn) {
+
+            const params =
+                new URLSearchParams({
+
+                    type: selectedType,
+
+                    area: area,
+
+                    tier: selectedTier,
+
+                    est:
+                        formatRupee(minimum) +
+                        " - " +
+                        formatRupee(maximum)
+
+                });
+
+
+            bookBtn.href =
+                "consultation.html?" +
+                params.toString();
+
+        }
+
+    }
+
+
+    /* ------------------------------------------
+       PROPERTY TYPE
+    ------------------------------------------ */
+
+    typeBtns.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            typeBtns.forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            this.classList.add("active");
+
+
+            currentRate =
+                parseInt(
+                    this.dataset.rate,
+                    10
+                ) || 1500;
+
+
+            selectedType =
+                this.textContent.trim();
+
+
+            updateEstimate();
+
+        });
+
+    });
+
+
+    /* ------------------------------------------
+       DESIGN TIER
+    ------------------------------------------ */
+
+    tierCards.forEach(card => {
+
+        card.addEventListener("click", function () {
+
+            tierCards.forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+            this.classList.add("active");
+
+
+            currentMultiplier =
+                parseFloat(
+                    this.dataset.multiplier
+                ) || 1;
+
+
+            selectedTier =
+                this.dataset.tier ||
+                this.textContent.trim();
+
+
+            updateEstimate();
+
+        });
+
+    });
+
+
+    /* ------------------------------------------
+       AREA SLIDER
+    ------------------------------------------ */
+
+    areaSlider.addEventListener(
+        "input",
+        updateEstimate
+    );
+
+
+    /* Initial calculation */
+
+    updateEstimate();
+
+})();
+
 
 /* ==========================================
-   FLOATING WHATSAPP INTERACTIVE WIDGET
+   10. CONSULTATION FORM
 ========================================== */
-const waTrigger = document.getElementById("waTrigger");
-const waPopup = document.getElementById("whatsappPopup");
-const waClose = document.getElementById("waClose");
 
-if (waTrigger && waPopup) {
-    waTrigger.addEventListener("click", () => {
-        waPopup.classList.toggle("active");
-        const badge = waTrigger.querySelector(".wa-badge");
-        if (badge) badge.style.display = "none";
+(function () {
+
+    const form =
+        document.getElementById("consultForm");
+
+
+    if (!form) return;
+
+
+    /* ------------------------------------------
+       Make sure EmailJS exists
+    ------------------------------------------ */
+
+    if (
+        typeof emailjs === "undefined"
+    ) {
+
+        console.error(
+            "EmailJS library is not loaded."
+        );
+
+        return;
+
+    }
+
+
+    emailjs.init({
+
+        publicKey:
+            "JQNKRXUA8AB_kcVmm"
+
     });
 
-    if (waClose) {
-        waClose.addEventListener("click", () => {
-            waPopup.classList.remove("active");
-        });
+
+    /* ------------------------------------------
+       FORM SUBMIT
+    ------------------------------------------ */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const submitButton =
+                form.querySelector(
+                    ".submit-btn"
+                );
+
+
+            /* Prevent double submission */
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.dataset.originalText =
+                    submitButton.innerHTML;
+
+                submitButton.innerHTML =
+                    'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+            }
+
+
+            emailjs.sendForm(
+
+                "service_82w12ja",
+
+                "template_sanqo6c",
+
+                form
+
+            )
+
+                .then(function () {
+
+                    const formBox =
+                        document.getElementById(
+                            "formBox"
+                        );
+
+                    const successBox =
+                        document.getElementById(
+                            "successBox"
+                        );
+
+
+                    if (formBox) {
+
+                        formBox.style.display =
+                            "none";
+
+                    }
+
+
+                    if (successBox) {
+
+                        successBox.style.display =
+                            "flex";
+
+                        successBox.classList.add(
+                            "show"
+                        );
+
+                    }
+
+                })
+
+                .catch(function (error) {
+
+                    console.error(
+                        "EmailJS error:",
+                        error
+                    );
+
+
+                    alert(
+                        error?.text ||
+                        error?.message ||
+                        "Something went wrong. Please try again."
+                    );
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerHTML =
+                            submitButton.dataset
+                                .originalText ||
+                            'Book Free Consultation <i class="fa-solid fa-arrow-right"></i>';
+
+                    }
+
+                });
+
+        }
+
+    );
+
+})();
+
+
+/* ==========================================
+   11. CONSULTATION AUTO-FILL
+========================================== */
+
+(function () {
+
+    const path =
+        window.location.pathname
+            .split("/")
+            .pop()
+            .toLowerCase();
+
+
+    if (
+        path !== "consultation.html"
+    ) {
+
+        return;
+
     }
-}
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const type =
+        params.get("type");
+
+    const area =
+        params.get("area");
+
+    const tier =
+        params.get("tier");
+
+    const estimate =
+        params.get("est");
+
+
+    /* ------------------------------------------
+       PROPERTY TYPE
+    ------------------------------------------ */
+
+    const propertySelect =
+        document.getElementById(
+            "formPropertyType"
+        );
+
+
+    if (
+        propertySelect &&
+        type
+    ) {
+
+        const wanted =
+            type.toLowerCase();
+
+
+        Array.from(
+            propertySelect.options
+        ).forEach(option => {
+
+            const value =
+                option.value.toLowerCase();
+
+
+            if (
+                value === wanted ||
+                value.includes(wanted) ||
+                wanted.includes(value)
+            ) {
+
+                option.selected = true;
+
+            }
+
+        });
+
+    }
+
+
+    /* ------------------------------------------
+       PROJECT MESSAGE
+    ------------------------------------------ */
+
+    const message =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    if (
+        message &&
+        estimate
+    ) {
+
+        message.value =
+            `Estimated scope: ${type || "Property"} ` +
+            `(${area || ""} Sq Ft, ` +
+            `${tier || "Standard"} Tier).\n` +
+
+            `Estimated Budget Range: ${estimate}.\n\n` +
+
+            `Looking forward to discussing ` +
+            `3D designs and consultation options.`;
+
+    }
+
+
+    /* ------------------------------------------
+       DATE
+    ------------------------------------------ */
+
+    const dateInput =
+        document.getElementById(
+            "formDate"
+        );
+
+
+    if (dateInput) {
+
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+
+        dateInput.min = today;
+
+
+        if (!dateInput.value) {
+
+            dateInput.value =
+                today;
+
+        }
+
+    }
+
+
+    /* ------------------------------------------
+       TIME SLOTS
+    ------------------------------------------ */
+
+    const slots =
+        document.querySelectorAll(
+            ".slot-chip"
+        );
+
+
+    const selectedSlot =
+        document.getElementById(
+            "selectedTimeSlot"
+        );
+
+
+    slots.forEach(slot => {
+
+        slot.addEventListener(
+            "click",
+            function () {
+
+                slots.forEach(item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                if (selectedSlot) {
+
+                    selectedSlot.value =
+                        this.dataset.slot ||
+                        this.textContent.trim();
+
+                }
+
+            }
+        );
+
+    });
+
+})();
+
+
+/* ==========================================
+   12. BEFORE / AFTER SLIDER
+========================================== */
+
+(function () {
+
+    const slider =
+        document.getElementById(
+            "baSlider"
+        );
+
+    const before =
+        document.getElementById(
+            "baBefore"
+        );
+
+    const handle =
+        document.getElementById(
+            "baHandle"
+        );
+
+
+    if (
+        !slider ||
+        !before ||
+        !handle
+    ) {
+
+        return;
+
+    }
+
+
+    let dragging = false;
+
+
+    /* ------------------------------------------
+       MOVE SLIDER
+    ------------------------------------------ */
+
+    function moveSlider(clientX) {
+
+        const rect =
+            slider.getBoundingClientRect();
+
+
+        let position =
+            clientX -
+            rect.left;
+
+
+        position =
+            Math.max(
+                0,
+                Math.min(
+                    position,
+                    rect.width
+                )
+            );
+
+
+        const percentage =
+            (position / rect.width) * 100;
+
+
+        before.style.width =
+            percentage + "%";
+
+
+        handle.style.left =
+            percentage + "%";
+
+    }
+
+
+    /* ------------------------------------------
+       MOUSE
+    ------------------------------------------ */
+
+    slider.addEventListener(
+        "pointerdown",
+        function (event) {
+
+            dragging = true;
+
+            slider.setPointerCapture(
+                event.pointerId
+            );
+
+            moveSlider(
+                event.clientX
+            );
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointermove",
+        function (event) {
+
+            if (!dragging) return;
+
+            moveSlider(
+                event.clientX
+            );
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointerup",
+        function () {
+
+            dragging = false;
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointercancel",
+        function () {
+
+            dragging = false;
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointerleave",
+        function () {
+
+            /* Pointer capture handles dragging,
+               so nothing else is required here. */
+
+        }
+    );
+
+})();
+/* =========================================================
+   PART 3
+   LIGHTBOX
+   WHATSAPP
+   BACK TO TOP
+   CURSOR GLOW
+   ========================================================= */
+
+
+/* =========================================================
+   13. FULL-SCREEN LIGHTBOX
+========================================================= */
+
+(function () {
+
+    const modal =
+        document.getElementById("lightboxModal");
+
+    const image =
+        document.getElementById("lightboxImg");
+
+    const caption =
+        document.getElementById("lightboxCaption");
+
+    const closeBtn =
+        document.getElementById("lightboxClose");
+
+    const prevBtn =
+        document.getElementById("lightboxPrev");
+
+    const nextBtn =
+        document.getElementById("lightboxNext");
+
+
+    if (!modal || !image) {
+
+        return;
+
+    }
+
+
+    let galleryImages = [];
+
+    let currentIndex = 0;
+
+
+    /* ------------------------------------------
+       FIND GALLERY IMAGES
+    ------------------------------------------ */
+
+    function collectImages() {
+
+        galleryImages =
+            Array.from(
+                document.querySelectorAll(
+                    [
+                        ".category-card img",
+                        ".hero-image img",
+                        ".consult-right img",
+                        ".portfolio-grid img",
+                        ".service-card img",
+                        ".ba-after img",
+                        ".gallery-img"
+                    ].join(",")
+                )
+            );
+
+    }
+
+
+    /* ------------------------------------------
+       OPEN LIGHTBOX
+    ------------------------------------------ */
+
+    function openLightbox(index) {
+
+        if (!galleryImages.length) {
+
+            return;
+
+        }
+
+
+        currentIndex =
+            Math.max(
+                0,
+                Math.min(
+                    index,
+                    galleryImages.length - 1
+                )
+            );
+
+
+        const target =
+            galleryImages[currentIndex];
+
+
+        if (!target) {
+
+            return;
+
+        }
+
+
+        image.src =
+            target.currentSrc ||
+            target.src;
+
+
+        image.alt =
+            target.alt ||
+            "INTRA Interior Design";
+
+
+        if (caption) {
+
+            caption.textContent =
+                target.alt ||
+                "INTRA Luxury Interior Project";
+
+        }
+
+
+        modal.classList.add(
+            "active"
+        );
+
+
+        document.body.classList.add(
+            "lightbox-open"
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       CLOSE LIGHTBOX
+    ------------------------------------------ */
+
+    function closeLightbox() {
+
+        modal.classList.remove(
+            "active"
+        );
+
+
+        document.body.classList.remove(
+            "lightbox-open"
+        );
+
+
+        /*
+           Clear image after closing.
+           This prevents the old image from
+           remaining visible during the next opening.
+        */
+
+        setTimeout(
+            function () {
+
+                if (
+                    !modal.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    image.src = "";
+
+                }
+
+            },
+            250
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       NEXT IMAGE
+    ------------------------------------------ */
+
+    function showNext() {
+
+        if (!galleryImages.length) {
+
+            return;
+
+        }
+
+
+        currentIndex =
+            (
+                currentIndex + 1
+            ) %
+            galleryImages.length;
+
+
+        openLightbox(
+            currentIndex
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       PREVIOUS IMAGE
+    ------------------------------------------ */
+
+    function showPrevious() {
+
+        if (!galleryImages.length) {
+
+            return;
+
+        }
+
+
+        currentIndex =
+            (
+                currentIndex -
+                1 +
+                galleryImages.length
+            ) %
+            galleryImages.length;
+
+
+        openLightbox(
+            currentIndex
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       IMAGE CLICK
+    ------------------------------------------ */
+
+    function initGallery() {
+
+        collectImages();
+
+
+        galleryImages.forEach(
+            function (img, index) {
+
+                img.style.cursor =
+                    "zoom-in";
+
+
+                img.addEventListener(
+                    "click",
+                    function (event) {
+
+                        /*
+                           IMPORTANT:
+
+                           If the image is inside
+                           an <a>, prevent that link
+                           from navigating.
+                        */
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+
+                        openLightbox(
+                            index
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       BUTTONS
+    ------------------------------------------ */
+
+    if (closeBtn) {
+
+        closeBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeLightbox();
+
+            }
+        );
+
+    }
+
+
+    if (nextBtn) {
+
+        nextBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                showNext();
+
+            }
+        );
+
+    }
+
+
+    if (prevBtn) {
+
+        prevBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                showPrevious();
+
+            }
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       CLICK OUTSIDE IMAGE
+    ------------------------------------------ */
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    /* ------------------------------------------
+       KEYBOARD CONTROLS
+    ------------------------------------------ */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                !modal.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeLightbox();
+
+            }
+
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                showNext();
+
+            }
+
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                showPrevious();
+
+            }
+
+        }
+    );
+
+
+    /* ------------------------------------------
+       INITIALIZE
+    ------------------------------------------ */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initGallery
+        );
+
+    }
+
+    else {
+
+        initGallery();
+
+    }
+
+})();
+
+
+
+/* =========================================================
+   14. WHATSAPP WIDGET
+========================================================= */
+
+(function () {
+
+    const widget =
+        document.getElementById(
+            "whatsappWidget"
+        );
+
+    const trigger =
+        document.getElementById(
+            "waTrigger"
+        );
+
+    const close =
+        document.getElementById(
+            "waClose"
+        );
+
+
+    if (!widget || !trigger) {
+
+        return;
+
+    }
+
+
+    /* ------------------------------------------
+       OPEN / CLOSE
+    ------------------------------------------ */
+
+    trigger.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            widget.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* ------------------------------------------
+       CLOSE BUTTON
+    ------------------------------------------ */
+
+    if (close) {
+
+        close.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                widget.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       PREVENT POPUP CLICK FROM CLOSING
+    ------------------------------------------ */
+
+    const popup =
+        document.getElementById(
+            "whatsappPopup"
+        );
+
+
+    if (popup) {
+
+        popup.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+            }
+        );
+
+    }
+
+
+    /* ------------------------------------------
+       CLOSE WHEN CLICKING OUTSIDE
+    ------------------------------------------ */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                widget.classList.contains(
+                    "active"
+                ) &&
+                !widget.contains(
+                    event.target
+                )
+            ) {
+
+                widget.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+})();
+
+
+
+/* =========================================================
+   15. BACK TO TOP
+========================================================= */
+
+(function () {
+
+    const topBtn =
+        document.getElementById(
+            "topBtn"
+        );
+
+
+    if (!topBtn) {
+
+        return;
+
+    }
+
+
+    function updateTopButton() {
+
+        if (
+            window.scrollY > 500
+        ) {
+
+            topBtn.classList.add(
+                "show"
+            );
+
+        }
+
+        else {
+
+            topBtn.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateTopButton,
+        {
+            passive: true
+        }
+    );
+
+
+    topBtn.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+    );
+
+
+    updateTopButton();
+
+})();
+
+
+
+/* =========================================================
+   16. CURSOR GLOW
+========================================================= */
+
+(function () {
+
+    const glow =
+        document.querySelector(
+            ".cursor-glow"
+        );
+
+
+    if (!glow) {
+
+        return;
+
+    }
+
+
+    /*
+       Cursor glow is mainly useful
+       on desktop.
+
+       Disable it for touch devices.
+    */
+
+    if (
+        window.matchMedia(
+            "(pointer: coarse)"
+        ).matches
+    ) {
+
+        glow.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    let mouseX = 0;
+
+    let mouseY = 0;
+
+    let glowX = 0;
+
+    let glowY = 0;
+
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            mouseX =
+                event.clientX;
+
+            mouseY =
+                event.clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* ------------------------------------------
+       SMOOTH GLOW MOVEMENT
+    ------------------------------------------ */
+
+    function animateGlow() {
+
+        glowX +=
+            (
+                mouseX -
+                glowX
+            ) * 0.12;
+
+
+        glowY +=
+            (
+                mouseY -
+                glowY
+            ) * 0.12;
+
+
+        glow.style.left =
+            glowX + "px";
+
+
+        glow.style.top =
+            glowY + "px";
+
+
+        requestAnimationFrame(
+            animateGlow
+        );
+
+    }
+
+
+    animateGlow();
+
+})();
+
+
+
+/* =========================================================
+   17. GLOBAL ERROR PROTECTION
+========================================================= */
+
+/*
+   This doesn't hide real errors.
+
+   It simply prevents optional UI features
+   from breaking the rest of the website
+   when an element doesn't exist on a page.
+*/
+
+
+window.addEventListener(
+    "error",
+    function (event) {
+
+        /*
+           Keep errors visible in the
+           browser console for debugging.
+        */
+
+        console.error(
+            "INTRA JS:",
+            event.error || event.message
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   18. FINAL INITIALIZATION
+========================================================= */
+
+/*
+   Part 1 initializes:
+
+   - Navigation
+   - Mobile menu
+   - Navbar
+   - Active navigation
+   - Loader
+   - Scroll reveal
+   - Counters
+
+   Part 2 initializes:
+
+   - Estimator
+   - Consultation form
+   - Consultation auto-fill
+   - Before/After
+
+   Part 3 initializes:
+
+   - Lightbox
+   - WhatsApp
+   - Back to top
+   - Cursor glow
+
+   Nothing else needs to be initialized here.
+*/
+
+
+console.log(
+    "INTRA Interiors JS loaded successfully."
+);
