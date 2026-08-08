@@ -2864,6 +2864,7 @@ TIMELINE CONTAINER
 }
 
 
+
 /*==================================================
                 IMAGE LAYERS
 ==================================================*/
@@ -3272,6 +3273,36 @@ TIMELINE CONTAINER
     z-index: 2;
     overflow: hidden;
     background: #fff;
+}
+
+/* ==========================================
+   BEFORE / AFTER SLIDER TOUCH CONTROL
+========================================== */
+
+.ba-slider {
+    position: relative;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: ew-resize;
+}
+
+.ba-slider {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.ba-slider img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.ba-handle,
+#baHandle {
+    touch-action: none;
+    pointer-events: none;
 }
 
 /*==================================================

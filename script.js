@@ -549,7 +549,7 @@ function initNavbarScroll() {
 
 const INTRA_NAV_SECTIONS = [
 
-    "services",
+    "portfolio",
 
     "estimator",
 
@@ -700,35 +700,161 @@ function initActiveNavigation() {
 
 
 /* =========================================================
-   07. LOADER
-   ========================================================= */
+   07. PREMIUM LOADER
+========================================================= */
 
 function initLoader() {
 
-    window.addEventListener(
-        "load",
-        function () {
+    const loader =
+        document.getElementById("loader");
 
-            const loader =
-                document.getElementById(
-                    "loader"
-                );
+    const progressBar =
+        document.getElementById("loaderProgressBar");
 
-
-            if (!loader) {
-
-                return;
-
-            }
+    const percentText =
+        document.getElementById("loaderPercent");
 
 
-            loader.classList.add(
-                "hide"
-            );
+    if (!loader) {
+        return;
+    }
 
 
-            setTimeout(
-                function () {
+    let progress = 0;
+
+    let pageLoaded = false;
+
+
+    /* -----------------------------------------
+       REAL PAGE LOAD
+    ----------------------------------------- */
+
+    if (document.readyState === "complete") {
+
+        pageLoaded = true;
+
+    } else {
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                pageLoaded = true;
+
+            },
+            { once: true }
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       UPDATE PROGRESS
+    ----------------------------------------- */
+
+    function updateProgress(value) {
+
+        progress = Math.min(
+            100,
+            Math.round(value)
+        );
+
+
+        if (progressBar) {
+
+            progressBar.style.width =
+                progress + "%";
+
+        }
+
+
+        if (percentText) {
+
+            percentText.textContent =
+                progress + "%";
+
+        }
+
+    }
+
+
+    /* -----------------------------------------
+       SMOOTH LOADING SIMULATION
+    ----------------------------------------- */
+
+    const progressTimer = setInterval(function () {
+
+        /*
+           Fast progress at the beginning
+        */
+        if (progress < 60) {
+
+            progress += Math.random() * 7 + 2;
+
+        }
+
+        /*
+           Slow down in the middle
+        */
+        else if (progress < 85) {
+
+            progress += Math.random() * 3 + 1;
+
+        }
+
+        /*
+           Approach 95%
+        */
+        else if (progress < 95) {
+
+            progress += Math.random() * 1.5 + 0.3;
+
+        }
+
+        /*
+           Once the page is actually loaded,
+           smoothly finish from 95 → 100.
+        */
+        else if (pageLoaded) {
+
+            progress += 2;
+
+        }
+
+
+        /*
+           Don't go beyond 95% until the
+           actual page has finished loading.
+        */
+        if (!pageLoaded && progress > 95) {
+
+            progress = 95;
+
+        }
+
+
+        /*
+           Never exceed 100%
+        */
+        progress = Math.min(progress, 100);
+
+        updateProgress(progress);
+
+
+        /*
+           Finish
+        */
+        if (progress >= 100 && pageLoaded) {
+
+            clearInterval(progressTimer);
+
+            updateProgress(100);
+
+            setTimeout(function () {
+
+                loader.classList.add("hide");
+
+                setTimeout(function () {
 
                     if (
                         loader &&
@@ -739,16 +865,14 @@ function initLoader() {
 
                     }
 
-                },
-                500
-            );
+                }, 850);
+
+            }, 350);
 
         }
-    );
 
+    }, 100);
 }
-
-
 /* =========================================================
    08. SCROLL REVEAL
    ========================================================= */
@@ -770,7 +894,7 @@ function initScrollReveal() {
 
     /*
        Use IntersectionObserver.
-
+ 
        This is much cleaner than having
        multiple scroll listeners.
     */
@@ -1619,156 +1743,102 @@ document.addEventListener(
 })();
 
 
+
 /* ==========================================
-   12. BEFORE / AFTER SLIDER
+   BEFORE & AFTER TRANSFORMATION SLIDER
+   MOBILE + DESKTOP
 ========================================== */
 
-(function () {
+const baSlider = document.getElementById("baSlider");
+const baBefore = document.getElementById("baBefore");
+const baHandle = document.getElementById("baHandle");
 
-    const slider =
-        document.getElementById(
-            "baSlider"
-        );
+if (baSlider && baBefore && baHandle) {
 
-    const before =
-        document.getElementById(
-            "baBefore"
-        );
-
-    const handle =
-        document.getElementById(
-            "baHandle"
-        );
-
-
-    if (
-        !slider ||
-        !before ||
-        !handle
-    ) {
-
-        return;
-
-    }
-
-
-    let dragging = false;
-
-
-    /* ------------------------------------------
-       MOVE SLIDER
-    ------------------------------------------ */
+    let isDragging = false;
 
     function moveSlider(clientX) {
 
-        const rect =
-            slider.getBoundingClientRect();
+        const rect = baSlider.getBoundingClientRect();
 
+        let position = clientX - rect.left;
 
-        let position =
-            clientX -
-            rect.left;
+        // Keep slider inside the container
+        position = Math.max(0, Math.min(position, rect.width));
 
+        const percentage = (position / rect.width) * 100;
 
-        position =
-            Math.max(
-                0,
-                Math.min(
-                    position,
-                    rect.width
-                )
-            );
-
-
-        const percentage =
-            (position / rect.width) * 100;
-
-
-        before.style.width =
-            percentage + "%";
-
-
-        handle.style.left =
-            percentage + "%";
-
+        baBefore.style.width = percentage + "%";
+        baHandle.style.left = percentage + "%";
     }
 
 
-    /* ------------------------------------------
-       MOUSE
-    ------------------------------------------ */
+    /* ==========================
+       POINTER DOWN
+    ========================== */
 
-    slider.addEventListener(
-        "pointerdown",
-        function (event) {
+    baSlider.addEventListener("pointerdown", function (e) {
 
-            dragging = true;
+        isDragging = true;
 
-            slider.setPointerCapture(
-                event.pointerId
-            );
+        // Capture the pointer so dragging
+        // continues even if finger moves
+        // slightly outside the slider.
+        baSlider.setPointerCapture(e.pointerId);
 
-            moveSlider(
-                event.clientX
-            );
+        moveSlider(e.clientX);
+    });
 
+
+    /* ==========================
+       POINTER MOVE
+    ========================== */
+
+    baSlider.addEventListener("pointermove", function (e) {
+
+        if (!isDragging) return;
+
+        moveSlider(e.clientX);
+    });
+
+
+    /* ==========================
+       POINTER UP
+    ========================== */
+
+    baSlider.addEventListener("pointerup", function (e) {
+
+        isDragging = false;
+
+        if (baSlider.hasPointerCapture(e.pointerId)) {
+            baSlider.releasePointerCapture(e.pointerId);
         }
-    );
+
+    });
 
 
-    slider.addEventListener(
-        "pointermove",
-        function (event) {
+    /* ==========================
+       POINTER CANCEL
+    ========================== */
 
-            if (!dragging) return;
+    baSlider.addEventListener("pointercancel", function () {
 
-            moveSlider(
-                event.clientX
-            );
+        isDragging = false;
 
-        }
-    );
+    });
 
 
-    slider.addEventListener(
-        "pointerup",
-        function () {
+    /* ==========================
+       PREVENT CLICK JUMP
+    ========================== */
 
-            dragging = false;
+    baSlider.addEventListener("click", function (e) {
 
-        }
-    );
+        moveSlider(e.clientX);
 
+    });
 
-    slider.addEventListener(
-        "pointercancel",
-        function () {
-
-            dragging = false;
-
-        }
-    );
-
-
-    slider.addEventListener(
-        "pointerleave",
-        function () {
-
-            /* Pointer capture handles dragging,
-               so nothing else is required here. */
-
-        }
-    );
-
-})();
-/* =========================================================
-   PART 3
-   LIGHTBOX
-   WHATSAPP
-   BACK TO TOP
-   CURSOR GLOW
-   ========================================================= */
-
+}
 
 /* =========================================================
    13. FULL-SCREEN LIGHTBOX
@@ -2016,7 +2086,7 @@ document.addEventListener(
 
                         /*
                            IMPORTANT:
-
+ 
                            If the image is inside
                            an <a>, prevent that link
                            from navigating.
@@ -2418,7 +2488,7 @@ document.addEventListener(
     /*
        Cursor glow is mainly useful
        on desktop.
-
+ 
        Disable it for touch devices.
     */
 
@@ -2509,7 +2579,7 @@ document.addEventListener(
 
 /*
    This doesn't hide real errors.
-
+ 
    It simply prevents optional UI features
    from breaking the rest of the website
    when an element doesn't exist on a page.
@@ -2541,7 +2611,7 @@ window.addEventListener(
 
 /*
    Part 1 initializes:
-
+ 
    - Navigation
    - Mobile menu
    - Navbar
@@ -2549,21 +2619,21 @@ window.addEventListener(
    - Loader
    - Scroll reveal
    - Counters
-
+ 
    Part 2 initializes:
-
+ 
    - Estimator
    - Consultation form
    - Consultation auto-fill
    - Before/After
-
+ 
    Part 3 initializes:
-
+ 
    - Lightbox
    - WhatsApp
    - Back to top
    - Cursor glow
-
+ 
    Nothing else needs to be initialized here.
 */
 

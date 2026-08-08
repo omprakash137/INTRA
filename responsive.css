@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INTRA INTERIORS — RESPONSIVE STYLES
+   INTRA INTERIORS — MOBILE / TABLET RESPONSIVE SYSTEM
    ========================================================================== */
 
 
@@ -8,10 +8,6 @@
    ========================================================================== */
 
 @media (max-width: 1200px) {
-
-    /* ------------------------------------------
-       GLOBAL CONTAINERS
-    ------------------------------------------ */
 
     .hero,
     .featured-categories,
@@ -34,16 +30,14 @@
     .footer-container,
     .consult-hero,
     .consult-form-section {
+
         width: 92%;
         max-width: 1140px;
+
         margin-left: auto;
         margin-right: auto;
     }
 
-
-    /* ------------------------------------------
-       NAVIGATION
-    ------------------------------------------ */
 
     nav {
         padding-left: 4%;
@@ -55,10 +49,6 @@
         gap: 22px;
     }
 
-
-    /* ------------------------------------------
-       HERO
-    ------------------------------------------ */
 
     .hero {
         gap: 45px;
@@ -75,31 +65,20 @@
     }
 
 
-    /* ------------------------------------------
-       SECTION HEADINGS
-    ------------------------------------------ */
-
     .numbers .container>h2,
     .all-services .section-heading h2 {
         font-size: 52px;
     }
 
 
-    /* ------------------------------------------
-       CARDS
-    ------------------------------------------ */
-
     .stat-card {
         min-height: 235px;
     }
 
 
-    /* ------------------------------------------
-       CONSULTATION
-    ------------------------------------------ */
-
     .consult-hero {
         gap: 50px;
+
         padding-left: 40px;
         padding-right: 40px;
     }
@@ -118,25 +97,32 @@
 
 @media (max-width: 992px) {
 
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
 
-    /* ==================================================
-       NAVIGATION
-       ================================================== */
 
     nav {
         padding: 14px 5%;
+
         background: rgba(255, 255, 255, .97);
+
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
 
 
-    /* ------------------------------------------
-       HAMBURGER
-    ------------------------------------------ */
+    /* ==========================
+       MOBILE MENU
+       ========================== */
 
     .menu-toggle {
+
         display: flex;
+
         flex-direction: column;
         justify-content: space-between;
 
@@ -152,6 +138,7 @@
 
 
     .menu-toggle span {
+
         width: 100%;
         height: 3px;
 
@@ -169,6 +156,7 @@
 
 
     .menu-toggle.active span:nth-child(1) {
+
         transform:
             translateY(9.5px) rotate(45deg);
 
@@ -177,12 +165,16 @@
 
 
     .menu-toggle.active span:nth-child(2) {
+
         opacity: 0;
-        transform: translateX(-10px);
+
+        transform:
+            translateX(-10px);
     }
 
 
     .menu-toggle.active span:nth-child(3) {
+
         transform:
             translateY(-9.5px) rotate(-45deg);
 
@@ -190,11 +182,12 @@
     }
 
 
-    /* ------------------------------------------
-       MOBILE NAV DRAWER
-    ------------------------------------------ */
+    /* ==========================
+       MOBILE DRAWER
+       ========================== */
 
     .nav-links {
+
         position: fixed;
 
         top: 0;
@@ -212,6 +205,7 @@
         display: flex;
 
         flex-direction: column;
+
         align-items: stretch;
         justify-content: flex-start;
 
@@ -237,6 +231,7 @@
 
 
     .nav-links a {
+
         display: flex;
 
         align-items: center;
@@ -272,6 +267,7 @@
 
     .nav-links a:hover,
     .nav-links a.active {
+
         padding-left: 24px;
 
         background:
@@ -281,11 +277,8 @@
     }
 
 
-    /* ------------------------------------------
-       MENU OVERLAY
-    ------------------------------------------ */
-
     .menu-overlay {
+
         position: fixed;
 
         inset: 0;
@@ -311,6 +304,7 @@
 
 
     .menu-overlay.active {
+
         opacity: 1;
         visibility: visible;
     }
@@ -321,11 +315,12 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        HERO
-       ================================================== */
+       ========================== */
 
     .hero {
+
         grid-template-columns: 1fr;
 
         gap: 45px;
@@ -340,6 +335,7 @@
 
 
     .hero-left {
+
         display: flex;
 
         flex-direction: column;
@@ -358,11 +354,12 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        CONSULTATION HERO
-       ================================================== */
+       ========================== */
 
     .consult-hero {
+
         grid-template-columns: 1fr;
 
         gap: 45px;
@@ -377,6 +374,7 @@
 
 
     .consult-left {
+
         display: flex;
 
         flex-direction: column;
@@ -388,13 +386,16 @@
 
 
     .consult-left .hero-features {
+
         justify-content: center;
+
         margin-left: auto;
         margin-right: auto;
     }
 
 
     .consult-right {
+
         width: 100%;
         max-width: 650px;
 
@@ -407,95 +408,115 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        GENERAL GRIDS
-       ================================================== */
+       ========================== */
 
     .category-grid,
     .categories-grid,
     .services-grid,
     .services-list {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .stats-grid,
     .number-grid,
     .numbers-grid {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .why-grid,
     .features-grid {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .process-grid,
     .steps-container {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .testimonial-grid {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .gallery-grid {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
-    /* ==================================================
+    /* ==========================
        ESTIMATOR
-       ================================================== */
+       ========================== */
 
     .estimator-grid,
     .calc-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns: 1fr !important;
     }
 
 
-    /* ==================================================
+    /* ==========================
        CONTACT
-       ================================================== */
+       ========================== */
 
     .connect-grid,
     .contact-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns: 1fr !important;
     }
 
 
-    /* ==================================================
+    /* ==========================
        CONSULTATION CARD
-       ================================================== */
+       ========================== */
 
     .consult-card {
-        grid-template-columns: 1fr;
+
+        grid-template-columns: 1fr !important;
     }
 
 
-    .consult-info,
-    .consult-form {
-        padding: 50px 40px;
+    /* ==========================
+       CTA
+       ========================== */
+
+    .consultation-card {
+
+        grid-template-columns: 1fr !important;
     }
 
 
-    /* ==================================================
+    .cta-visual {
+
+        width: 100%;
+    }
+
+
+    /* ==========================
        FOOTER
-       ================================================== */
+       ========================== */
 
     .footer-container {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
 
         gap: 40px;
     }
@@ -504,54 +525,66 @@
 
 
 /* ==========================================================================
-   3. TABLET PORTRAIT
+   3. TABLET PORTRAIT / MOBILE
    ========================================================================== */
 
 @media (max-width: 768px) {
 
+    html,
+    body {
 
-    /* ==================================================
-       GLOBAL
-       ================================================== */
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: hidden;
+    }
+
 
     body {
         overflow-x: hidden;
     }
 
 
-    /* ==================================================
+    /* ==========================
        TYPOGRAPHY
-       ================================================== */
+       ========================== */
 
     h1,
     .hero h1,
     .consult-left h1,
     .project-hero h1 {
+
         font-size: 2.3rem;
+
         line-height: 1.2;
     }
 
 
     h2 {
+
         font-size: 1.9rem;
+
         line-height: 1.3;
     }
 
 
     h3 {
+
         font-size: 1.3rem;
     }
 
 
     p {
+
         font-size: .98rem;
+
         line-height: 1.65;
     }
 
 
-    /* ==================================================
+    /* ==========================
        SECTION SPACING
-       ================================================== */
+       ========================== */
 
     .featured-categories,
     .numbers-section,
@@ -562,16 +595,18 @@
     .testimonials,
     .all-services,
     .connect {
+
         padding-top: 80px;
         padding-bottom: 80px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        HERO
-       ================================================== */
+       ========================== */
 
     .hero {
+
         width: 92%;
 
         padding-top: 120px;
@@ -582,6 +617,7 @@
 
 
     .hero-buttons {
+
         width: 100%;
         max-width: 420px;
     }
@@ -589,45 +625,112 @@
 
     .hero-buttons a,
     .hero-buttons button {
+
         min-height: 50px;
     }
 
 
-    /* ==================================================
-       PORTFOLIO
-       ================================================== */
+    /* ==========================
+       ⭐ CRITICAL:
+       SERVICES = ONE COLUMN
+       ========================== */
 
-    .category-grid,
-    .categories-grid,
-    .services-grid,
-    .services-list,
-    .why-grid,
-    .features-grid,
-    .process-grid,
-    .steps-container,
-    .testimonial-grid,
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    .all-services .services-list,
+    .services-list {
+
+        display: grid !important;
+
+        grid-template-columns:
+            1fr !important;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        gap: 14px;
+    }
+
+
+    .service-item {
+
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    /* ==========================
+       ⭐ PROCESS = ONE COLUMN
+       ========================== */
+
+    .process .process-grid,
+    .process-grid {
+
+        display: grid !important;
+
+        grid-template-columns:
+            1fr !important;
+
+        width: 100%;
+
+        max-width: 100%;
 
         gap: 18px;
     }
 
 
-    /* ==================================================
+    .process-card {
+
+        width: 100%;
+
+        min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    /* ==========================
+       OTHER GRIDS = ONE COLUMN
+       ========================== */
+
+    .category-grid,
+    .categories-grid,
+    .services-grid,
+    .why-grid,
+    .features-grid,
+    .steps-container,
+    .testimonial-grid,
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr !important;
+
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+
+    /* ==========================
        NUMBERS
-       ================================================== */
+       ========================== */
 
     .stats-grid,
     .number-grid,
     .numbers-grid {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
 
         gap: 15px;
     }
 
 
     .stat-card {
+
         min-height: 210px;
 
         padding:
@@ -636,6 +739,7 @@
 
 
     .stat-card i {
+
         width: 55px;
         height: 55px;
 
@@ -646,15 +750,17 @@
 
 
     .stat-card .counter {
+
         font-size: 38px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        RATING
-       ================================================== */
+       ========================== */
 
     .numbers-bottom .rating {
+
         width: 100%;
 
         min-height: auto;
@@ -669,54 +775,155 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        BEFORE / AFTER
-       ================================================== */
+       ========================== */
 
     .transformation-section {
+
         padding:
             70px 15px;
     }
 
 
     .ba-slider {
+
         height: 320px;
+
         border-radius: 16px;
     }
 
 
-    /* ==================================================
-       ESTIMATOR
-       ================================================== */
+    /* ==========================
+       ⭐ ESTIMATOR
+       ========================== */
 
-    .type-options,
-    .tier-options {
-        flex-direction: column;
+    .estimator-grid,
+    .calc-grid {
 
-        width: 100%;
+        grid-template-columns:
+            1fr !important;
     }
 
 
-    .type-btn,
-    .tier-btn {
+    .type-options {
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
         width: 100%;
+
+        gap: 10px;
+    }
+
+
+    .type-btn {
+
+        width: 100%;
+
+        min-width: 0;
+
+        box-sizing: border-box;
 
         justify-content: center;
+
         text-align: center;
+
+        white-space: normal;
     }
 
 
-    .breakdown-grid {
-        grid-template-columns: 1fr;
+    .tier-options {
+
+        display: grid !important;
+
+        grid-template-columns:
+            1fr !important;
+
+        width: 100%;
+
         gap: 12px;
     }
 
 
-    /* ==================================================
+    .tier-card {
+
+        width: 100%;
+
+        min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    .breakdown-grid {
+
+        grid-template-columns:
+            1fr !important;
+
+        gap: 12px;
+    }
+
+
+    /* ==========================
+       ⭐ CONSULTATION CTA
+       ========================== */
+
+    .consultation-card {
+
+        display: grid !important;
+
+        grid-template-columns:
+            1fr !important;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .cta-content {
+
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    .cta-visual {
+
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+
+    .cta-image {
+
+        width: 100%;
+    }
+
+
+    .cta-image img {
+
+        width: 100%;
+
+        height: auto;
+
+        object-fit: cover;
+    }
+
+
+    /* ==========================
        CONSULTATION
-       ================================================== */
+       ========================== */
 
     .consult-hero {
+
         width: 92%;
 
         padding:
@@ -725,11 +932,13 @@
 
 
     .consult-left h1 {
+
         font-size: 2.3rem;
     }
 
 
     .hero-description {
+
         max-width: 600px;
 
         font-size: 15px;
@@ -737,9 +946,11 @@
 
 
     .consult-left .hero-features {
+
         width: 100%;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr !important;
 
         gap: 12px;
 
@@ -748,27 +959,35 @@
 
 
     .consult-left .hero-features div {
+
         justify-content: flex-start;
     }
 
 
     .consult-right {
+
         width: 100%;
     }
 
 
     .consult-right img {
+
         height: 340px;
+
+        max-width: 100%;
+
+        object-fit: cover;
 
         border-radius: 22px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        CONSULTATION FORM
-       ================================================== */
+       ========================== */
 
     .consult-form-section {
+
         width: 92%;
 
         padding:
@@ -778,31 +997,41 @@
 
     .consult-info,
     .consult-form {
+
         padding:
             40px 25px;
+
+        width: 100%;
+
+        box-sizing: border-box;
     }
 
 
     .consult-info h2,
     .form-header h2 {
+
         font-size: 30px;
     }
 
 
     .info-stats {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2, minmax(0, 1fr)) !important;
     }
 
 
     .double-input {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr !important;
 
         gap: 0;
     }
 
 
     .slot-chips {
+
         flex-wrap: wrap;
 
         height: auto;
@@ -812,20 +1041,29 @@
 
 
     .slot-chip {
+
         min-width: 90px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        FOOTER
-       ================================================== */
+       ========================== */
 
     .footer-container {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr !important;
 
         gap: 32px;
 
         text-align: center;
+
+        width: 92%;
+
+        max-width: 100%;
+
+        box-sizing: border-box;
     }
 
 
@@ -834,20 +1072,34 @@
     .footer-services,
     .footer-contact,
     .footer-social {
+
         display: flex;
 
         flex-direction: column;
 
         align-items: center;
+
+        width: 100%;
+
+        max-width: 100%;
     }
 
 
-    /* ==================================================
+    .footer-contact p {
+
+        max-width: 100%;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* ==========================
        FLOATING BUTTONS
-       ================================================== */
+       ========================== */
 
     .whatsapp-float,
     .whatsapp-trigger {
+
         width: 52px;
         height: 52px;
 
@@ -859,6 +1111,7 @@
 
 
     #topBtn {
+
         width: 44px;
         height: 44px;
 
@@ -875,10 +1128,9 @@
 
 @media (max-width: 480px) {
 
-
-    /* ==================================================
+    /* ==========================
        LOGO
-       ================================================== */
+       ========================== */
 
     .logo span {
         font-size: 1.35rem;
@@ -886,16 +1138,18 @@
 
 
     .logo img {
+
         width: 40px;
         height: 40px;
     }
 
 
-    /* ==================================================
-       NAVIGATION
-       ================================================== */
+    /* ==========================
+       NAV
+       ========================== */
 
     .nav-links {
+
         width: 270px;
 
         padding:
@@ -904,6 +1158,7 @@
 
 
     .nav-links a {
+
         font-size: .95rem;
 
         padding:
@@ -911,13 +1166,14 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        TYPOGRAPHY
-       ================================================== */
+       ========================== */
 
     .hero h1,
     .consult-left h1,
     .project-hero h1 {
+
         font-size: 1.9rem;
     }
 
@@ -927,11 +1183,12 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        HERO
-       ================================================== */
+       ========================== */
 
     .hero {
+
         width: 90%;
 
         padding-top: 110px;
@@ -939,6 +1196,7 @@
 
 
     .hero-buttons {
+
         flex-direction: column;
 
         width: 100%;
@@ -951,6 +1209,7 @@
     .btn-secondary,
     .design-btn,
     .estimate-btn {
+
         width: 100%;
 
         justify-content: center;
@@ -959,14 +1218,16 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
        NUMBERS
-       ================================================== */
+       ========================== */
 
     .stats-grid,
     .number-grid,
     .numbers-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr !important;
 
         gap: 15px;
     }
@@ -977,20 +1238,39 @@
     }
 
 
-    /* ==================================================
+    /* ==========================
+       ESTIMATOR
+       ========================== */
+
+    .type-options {
+
+        grid-template-columns:
+            1fr !important;
+    }
+
+
+    .tier-options {
+
+        grid-template-columns:
+            1fr !important;
+    }
+
+
+    /* ==========================
        BEFORE / AFTER
-       ================================================== */
+       ========================== */
 
     .ba-slider {
         height: 260px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        CONSULTATION
-       ================================================== */
+       ========================== */
 
     .consult-hero {
+
         width: 90%;
 
         padding-top: 110px;
@@ -1004,38 +1284,38 @@
 
     .consult-info,
     .consult-form {
+
         padding:
             32px 18px;
     }
 
 
     .info-stats {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr !important;
     }
 
 
-    .consult-info h2,
-    .form-header h2 {
-        font-size: 27px;
-    }
-
-
-    /* ==================================================
+    /* ==========================
        FORM
-       ================================================== */
+       ========================== */
 
     .input-group input,
     .input-group select {
+
         height: 50px;
     }
 
 
     .input-group textarea {
+
         min-height: 115px;
     }
 
 
     .slot-chips {
+
         flex-direction: column;
 
         align-items: stretch;
@@ -1043,22 +1323,25 @@
 
 
     .slot-chip {
+
         width: 100%;
     }
 
 
     .submit-btn {
+
         height: 54px;
 
         font-size: 13px;
     }
 
 
-    /* ==================================================
+    /* ==========================
        WHATSAPP
-       ================================================== */
+       ========================== */
 
     .whatsapp-trigger {
+
         width: 50px;
         height: 50px;
 
@@ -1068,6 +1351,7 @@
 
 
     #topBtn {
+
         right: 16px;
         bottom: 76px;
     }
@@ -1088,11 +1372,13 @@
 
     .hero h1,
     .consult-left h1 {
+
         font-size: 1.7rem;
     }
 
 
     .numbers-bottom .rating {
+
         padding:
             24px 18px 35px;
     }
@@ -1100,6 +1386,7 @@
 
     .consult-info,
     .consult-form {
+
         padding:
             28px 15px;
     }
@@ -1116,6 +1403,7 @@
     .stat-card:hover,
     .service-item:hover,
     .consult-right:hover img {
+
         transform: none;
     }
 
@@ -1141,9 +1429,11 @@
     *,
     *::before,
     *::after {
+
         scroll-behavior: auto !important;
 
         animation-duration: .01ms !important;
+
         animation-iteration-count: 1 !important;
 
         transition-duration: .01ms !important;

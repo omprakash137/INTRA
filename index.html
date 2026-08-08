@@ -33,15 +33,13 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="logo.png">
 
-    <!-- LocalBusiness & InteriorDesigner Schema.org Structured Data -->
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "InteriorDesigner",
   "name": "INTRA Interiors",
   "image": "logo.png",
-  "@id": "https://intra.in",
-  "url": "https://intra.in",
+  
   "telephone": "+919337785473",
   "priceRange": "₹₹ - ₹₹₹",
   "address": {
@@ -94,45 +92,113 @@
 
 <body>
     <div class="cursor-glow"></div>
+
+    <!-- =========================================================
+     INTRA PREMIUM LOADING SCREEN
+========================================================= -->
+
     <div id="loader">
 
-        <img src="logo.png" alt="INTRA Logo">
+        <div class="loader-content">
 
-        <h1>INTRA</h1>
+            <div class="loader-brand">
 
-        <p>Designing Spaces, Creating Memories</p>
+                <div class="loader-logo-wrap">
+                    <img src="logo.png" alt="INTRA Logo">
+                </div>
+
+                <h1>INTRA</h1>
+
+                <span class="loader-subtitle">
+                    INTERIOR DESIGN STUDIO
+                </span>
+
+            </div>
+
+
+            <div class="loader-progress">
+
+                <div class="loader-progress-top">
+                    <span>CRAFTING YOUR SPACE</span>
+                    <span id="loaderPercent">0%</span>
+                </div>
+
+                <div class="loader-line">
+                    <div id="loaderProgressBar"></div>
+                </div>
+
+            </div>
+
+
+            <p class="loader-tagline">
+                Designing Spaces, Creating Memories
+            </p>
+
+        </div>
 
     </div>
+
     <nav>
+
         <div class="menu-overlay"></div>
+
         <div class="logo">
 
-            <img src="logo.png" alt="INTRA Logo">
+            <a href="index.html">
 
-            <span>INTRA</span>
+                <img src="logo.png" alt="INTRA Logo">
+
+                <span>INTRA</span>
+
+            </a>
 
         </div>
 
         <div class="nav-links">
 
-            <a href="#" class="active">Home</a>
-            <a href="#services">Portfolio</a>
-            <a href="#estimator">Estimator</a>
-            <a href="#transformation">Before/After</a>
-            <a href="#all-services">Services</a>
-            <a href="consultation.html">Consultation</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html" data-page="home">
+                Home
+            </a>
+
+            <a href="index.html#portfolio" data-page="portfolio">
+                Portfolio
+            </a>
+
+            <a href="index.html#estimator" data-page="estimator">
+                Estimator
+            </a>
+
+            <a href="index.html#transformation" data-page="transformation">
+                Before/After
+            </a>
+
+            <a href="index.html#all-services" data-page="services">
+                Services
+            </a>
+
+            <a href="consultation.html" data-page="consultation">
+                Consultation
+            </a>
+
+            <a href="index.html#contact" data-page="contact">
+                Contact
+            </a>
 
         </div>
-        <div class="menu-toggle">
+
+
+
+
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
 
             <span></span>
             <span></span>
             <span></span>
 
-        </div>
-
+        </button>
     </nav>
+
+
     <section class="hero" id="home">
 
         <div class="hero-bg">
@@ -165,7 +231,7 @@
                     Book Consultation
                 </a>
 
-                <a href="#services" class="secondary-btn">
+                <a href="#portfolio" class="secondary-btn">
                     Explore Projects
                 </a>
 
@@ -214,8 +280,8 @@
 
 
     </section>
-    <div id="portfolio-anchor"></div>
-    <section class="featured-categories" id="services">
+
+    <section class="featured-categories" id="portfolio">
 
         <div class="category-grid">
 
@@ -621,9 +687,7 @@
 
     </section>
 
-    <!-- ==========================================
-   INTERACTIVE BEFORE & AFTER SLIDER
-========================================== -->
+
     <section class="transformation-section reveal" id="transformation">
         <div class="section-title">
             <p>OUR TRANSFORMATIONS</p>
@@ -652,9 +716,7 @@
         </div>
     </section>
 
-    <!-- ==========================================
-   INTERACTIVE COST ESTIMATOR
-========================================== -->
+
     <section class="estimator-section reveal" id="estimator">
         <div class="section-title">
             <p>COST CALCULATOR</p>
@@ -667,18 +729,22 @@
                 <div class="estimator-group">
                     <label><i class="fa-solid fa-house"></i> Property Type</label>
                     <div class="type-options" id="calcPropertyType">
-                        <button type="button" class="type-btn active" data-type="1bhk" data-rate="1400">1 BHK</button>
+                        <button type="button" class="type-btn active" data-type="1bhk" data-rate="1400">1
+                            BHK</button>
                         <button type="button" class="type-btn" data-type="2bhk" data-rate="1500">2 BHK</button>
                         <button type="button" class="type-btn" data-type="3bhk" data-rate="1650">3 BHK</button>
-                        <button type="button" class="type-btn" data-type="villa" data-rate="1900">Villa / House</button>
+                        <button type="button" class="type-btn" data-type="villa" data-rate="1900">Villa /
+                            House</button>
                         <button type="button" class="type-btn" data-type="kitchen" data-rate="1200">Modular
                             Kitchen</button>
-                        <button type="button" class="type-btn" data-type="office" data-rate="1750">Office Space</button>
+                        <button type="button" class="type-btn" data-type="office" data-rate="1750">Office
+                            Space</button>
                         <button type="button" class="type-btn" data-type="caferestaurant" data-rate="1850">Café &
                             Restaurant</button>
                         <button type="button" class="type-btn" data-type="hotelroom" data-rate="2100">Hotel
                             Room</button>
-                        <button type="button" class="type-btn" data-type="spa" data-rate="2250">Spa & Wellness</button>
+                        <button type="button" class="type-btn" data-type="spa" data-rate="2250">Spa &
+                            Wellness</button>
                     </div>
                 </div>
 
@@ -744,9 +810,7 @@
         </div>
     </section>
 
-    <!-- ==========================================
-     CONSULTATION CTA
-========================================== -->
+
 
     <section class="consultation-cta reveal" id="consultation">
 
@@ -1124,7 +1188,7 @@
         </div>
 
     </section>
-    <footer id="contact">
+    <footer>
         <div class="footer-container">
 
             <div class="footer-about">
@@ -1144,13 +1208,34 @@
 
                 <h4>Quick Links</h4>
 
-                <a href="#home">Home</a>
 
-                <a href="#services">Portfolio</a>
+                <a href="index.html" data-page="home">
+                    Home
+                </a>
 
-                <a href="#all-services">Services</a>
+                <a href="index.html#portfolio" data-page="portfolio">
+                    Portfolio
+                </a>
 
-                <a href="consultation.html">Consultation</a>
+                <a href="index.html#estimator" data-page="estimator">
+                    Estimator
+                </a>
+
+                <a href="index.html#transformation" data-page="transformation">
+                    Before/After
+                </a>
+
+                <a href="index.html#all-services" data-page="services">
+                    Services
+                </a>
+
+                <a href="consultation.html" data-page="consultation">
+                    Consultation
+                </a>
+
+                <a href="index.html#contact" data-page="contact">
+                    Contact
+                </a>
 
 
             </div>
@@ -1223,7 +1308,7 @@
         </div>
 
     </footer>
-    <!-- LIGHTBOX GALLERY MODAL -->
+
     <div class="lightbox-modal" id="lightboxModal">
         <span class="lightbox-close" id="lightboxClose">&times;</span>
         <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous Image"><i
@@ -1236,7 +1321,7 @@
         </div>
     </div>
 
-    <!-- FLOATING WHATSAPP INTERACTIVE WIDGET -->
+
     <div class="whatsapp-widget-wrapper" id="whatsappWidget">
         <div class="whatsapp-popup" id="whatsappPopup">
             <div class="wa-header">
